@@ -1,17 +1,18 @@
 export default function Footer() {
     return (
-        <footer>
-            <div className="footer-links">
-                <p className="ticket-mono" style={{ marginBottom: '2rem' }}>// REDES</p>
-                <ul>
-                    <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-                    <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-                    <li><a href="https://behance.net" target="_blank" rel="noopener">Behance</a></li>
-                </ul>
-            </div>
+        <footer className="pie entrar">
+            <ul className="redes">
+                <li><a className="redes-link" href="https://linkedin.com">LINKEDIN</a></li>
+                <li><a className="redes-link" href="https://instagram.com">INSTAGRAM</a></li>
+                <li><a className="redes-link" href="https://behance.net">BEHANCE</a></li>
+            </ul>
             
-            <div className="footer-credit">
-                <p style={{ opacity: 0.4 }}>© 2026 Angela — Creado con lógica humana en Granada.</p>
+            <div className="pie-info">
+                <div>
+                    <p>2026 ANGELA — GRANADA, ES.</p>
+                    <h4 className="brillo mt-m">CODE X ART STUDIO</h4>
+                </div>
+                <span className="detalle-sigilo">LOG_COMPLETADO</span>
             </div>
         </footer>
     );

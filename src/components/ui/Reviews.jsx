@@ -1,19 +1,17 @@
 export default function Reviews() {
     return (
-        <div className="vanguard-block" style={{ border: 'none', paddingLeft: 0 }}>
-            <div className="review-item">
-                <p>
-                    "Angela no solo diseña, entiende lo que necesito antes de que yo lo sepa explicar. Directa y eficaz."
-                </p>
-                <span className="ticket-mono">// OPINIÓN_TECNOLOGÍA</span>
+        <section className="seccion entrar">
+            <span className="detalle-sigilo">RECONOCIMIENTO</span>
+            
+            <div className="grid-testimonios">
+                <p className="cita">"Angela no solo entiende el código, entiende el alma de una marca."</p>
+                <span className="detalle-sigilo">CEO SANCTUM PSIOCOLOGIA</span>
             </div>
 
-            <div className="review-item">
-                <p>
-                    "Un soplo de aire fresco. Su visión de la imagen corporativa es lo que nos hacía falta para destacar."
-                </p>
-                <span className="ticket-mono">// OPINIÓN_DISEÑO</span>
+            <div className="grid-testimonios">
+                <p className="cita">"Su visión vanguardista transformó nuestra presencia web en una experiencia de arte."</p>
+                <span className="detalle-sigilo">CARMEN</span>
             </div>
-        </div>
+        </section>
     );
 }

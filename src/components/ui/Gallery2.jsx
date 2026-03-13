@@ -1,4 +1,5 @@
 import { useState } from "react";
+import VisorMovil from "./VisorMovil";
 
 const proyectos = [
     // WEB
@@ -32,6 +33,7 @@ const categorias = [
 
 export default function Gallery2() {
     const [activa, setActiva] = useState("todos");
+    const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
 
     const filtrados = activa === "todos"
         ? proyectos
@@ -66,8 +68,14 @@ export default function Gallery2() {
                             <div className="pdf-tarjeta">
                                 <span className="detalle-sigilo">DOCUMENTO PDF</span>
                                 <h3 className="mb-m">REVISTA_BRANDING</h3>
-                                <a href={proyecto.src} target="_blank" rel="noreferrer" className="boton-toggle">
-                                    ABRIR ARCHIVO
+                                <button 
+                                    onClick={() => setPdfSeleccionado(proyecto.src)}
+                                    className="boton-toggle"
+                                >
+                                    VISTA PREVIA MÓVIL
+                                </button>
+                                <a href={proyecto.src} target="_blank" rel="noreferrer" className="redes-link mt-m" style={{fontSize: '0.7rem'}}>
+                                    DESCARGAR ARCHIVO
                                 </a>
                             </div>
                         ) : (
@@ -76,6 +84,11 @@ export default function Gallery2() {
                     </li>
                 ))}
             </ul>
+
+            <VisorMovil 
+                pdfUrl={pdfSeleccionado} 
+                alCerrar={() => setPdfSeleccionado(null)} 
+            />
         </section>
     );
 }

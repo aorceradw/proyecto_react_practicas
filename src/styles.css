@@ -228,6 +228,111 @@ h1, h2, h3, h4 {
 .medio { grid-column: span 5; aspect-ratio: 16/10; }
 .total { grid-column: span 12; aspect-ratio: 21/9; }
 
+/* --- VISOR MÓVIL (INTERACTIVO) --- */
+.visor-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    animation: entrar-fade 0.5s var(--suave) both;
+}
+
+@keyframes entrar-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.telefono-contenedor {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.marco-movil {
+    width: 320px;
+    height: 650px;
+    background: #1a1a1a;
+    border: 8px solid #333;
+    border-radius: 40px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+/* Detalles del Teléfono */
+.altavoz-sensor {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+}
+
+.boton-home {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border: 2px solid #333;
+    border-radius: 50%;
+}
+
+.pantalla-interna {
+    position: absolute;
+    top: 50px;
+    bottom: 80px;
+    left: 10px;
+    right: 10px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.iframe-pdf {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.cerrar-visor {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: var(--crema);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.cerrar-visor:hover {
+    background: var(--crema);
+    color: var(--negro);
+    transform: scale(1.1);
+}
+
+.info-visor {
+    text-align: center;
+}
+
 /* PDF en Galería */
 .pdf-tarjeta {
     height: 100%;

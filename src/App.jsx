@@ -7,15 +7,16 @@ import About from "./pages/About.jsx";
 
 export default function App() {
     return (
-        <main>
+        <div>
             <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/trabajos" element={<Work />} />
-                <Route path="/sobre-mi" element={<About />} />
-            </Routes>
+            <div className="contenido-principal">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/trabajos" element={<Work />} />
+                    <Route path="/sobre-mi" element={<About />} />
+                </Routes>
+            </div>
             <Footer />
-        </main>
+        </div>
     );
 }
-

@@ -1,18 +1,23 @@
 export default function Footer() {
     return (
-        <footer className="pie entrar">
-            <ul className="redes">
-                <li><a className="redes-link" href="https://linkedin.com">LINKEDIN</a></li>
-                <li><a className="redes-link" href="https://instagram.com">INSTAGRAM</a></li>
-                <li><a className="redes-link" href="https://behance.net">BEHANCE</a></li>
-            </ul>
-            
-            <div className="pie-info">
-                <div>
-                    <p>2026 ANGELA — GRANADA, ES.</p>
-                    <h4 className="brillo mt-m">CODE X ART STUDIO</h4>
-                </div>
-                <span className="detalle-sigilo">LOG_COMPLETADO</span>
+        <footer className="app-footer animar retraso-2">
+            <div className="footer-logo-fondo texto-cromo">ANGELA</div>
+
+            <div className="footer-copyright">
+                <p>© 2026 Angela Studio</p>
+                <p className="footer-copyright-linea">Todos los derechos reservados</p>
+            </div>
+
+            <div className="footer-redes-contenedor">
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="footer-link">
+                    LinkedIn <span className="footer-link-flecha">↗</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="footer-link">
+                    Instagram <span className="footer-link-flecha">↗</span>
+                </a>
+                <a href="https://behance.net" target="_blank" rel="noreferrer" className="footer-link">
+                    Behance <span className="footer-link-flecha">↗</span>
+                </a>
             </div>
         </footer>
     );

@@ -1,23 +1,48 @@
-import Gallery from "../components/ui/Gallery";
-import Reviews from "../components/ui/Reviews";
+import { Link } from "react-router-dom";
 import Form from "../components/ui/Form";
 
 export default function Home() {
     return (
-        <div className="principal">
-            <section className="seccion entrar">
-                <span className="detalle-sigilo">SISTEMA VISUAL ACTIVO</span>
-                <h1 className="brillo super-titulo mt-m">
-                    ANGELA<br />STUDIO
-                </h1>
-                <p className="descripcion">
-                    Diseño y desarrollo de alta costura digital. Creamos identidades que trascienden lo convencional a través de una estética sofisticada y una arquitectura técnica impecable.
-                </p>
+        <main>
+            <section className="hero-contenedor">
+                <video autoPlay loop muted playsInline className="hero-video">
+                    <source src="/videos/hero.mp4" type="video/mp4" />
+                </video>
+                <div className="hero-overlay"></div>
+
+                <div className="hero-contenido">
+                    <h1 className="hero-titulo texto-cromo animar">Angela</h1>
+                    <p className="hero-subtitulo animar retraso-1">Desarrollo web · Imagen corporativa · Diseño gráfico</p>
+                    <Link to="/trabajos" className="hero-cta animar retraso-2">Ver proyectos</Link>
+                </div>
+
+                <div className="hero-scroll"></div>
             </section>
 
-            <Gallery />
-            <Reviews />
+            <div className="marquee-contenedor">
+                <div className="marquee-texto">
+                    Desarrollo web · Imagen corporativa · Branding · Diseño gráfico · Desarrollo web · Imagen corporativa · Branding · Diseño gráfico · Desarrollo web · Imagen corporativa · Branding · Diseño gráfico ·&nbsp;
+                </div>
+            </div>
+
+            <section className="seccion-servicios">
+                <div className="tarjeta servicio-tarjeta servicio-1 animar">
+                    <span className="etiqueta">01</span>
+                    <h3 className="servicio-titulo">Desarrollo web</h3>
+                </div>
+
+                <div className="tarjeta servicio-tarjeta servicio-2 animar retraso-1">
+                    <span className="etiqueta">02</span>
+                    <h3 className="servicio-titulo">Imagen corporativa</h3>
+                </div>
+
+                <div className="tarjeta servicio-tarjeta servicio-3 animar retraso-2">
+                    <span className="etiqueta">03</span>
+                    <h3 className="servicio-titulo">Diseño de marca</h3>
+                </div>
+            </section>
+
             <Form />
-        </div>
+        </main>
     );
 }

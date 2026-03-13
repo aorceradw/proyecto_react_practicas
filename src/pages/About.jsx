@@ -1,52 +1,76 @@
 export default function About() {
     return (
-        <div className="sobre-mi entrar">
-            <header className="seccion">
-                <span className="detalle-sigilo">AUTORÍA DIGITAL</span>
-                <h2 className="brillo super-titulo mt-m">ANGELA<br />STUDIO_</h2>
-            </header>
-
-            <section className="caja">
-                <h3 className="mb-l">
-                    Si una web no tiene carácter, es solo ruido.
-                </h3>
-                <p className="texto">
-                    No creo en soluciones genéricas ni en código que no comunica nada. 
-                    Vengo del mundo de la asesoría de imagen y el diseño gráfico, por lo que entiendo que una marca se construye desde la estética hasta la infraestructura. 
-                </p>
-                <p className="texto mt-m">
-                    No solo pico código; diseño identidades digitales que impactan. 
-                    Sé cómo debe verse una empresa y sé cómo hacer que funcione de forma robusta. 
-                    Si buscas a alguien que se limite a seguir instrucciones, no soy yo. Si buscas visión y criterio técnico, hablemos.
-                </p>
-            </section>
-
-            <section className="grid-2 mt-xl">
-                <div>
-                    <span className="detalle-sigilo">VISUAL & UI</span>
-                    <p className="mt-m">
-                        Identidad de vanguardia. Figma, React, CSS avanzado. Diseño que proyecta autoridad.
-                    </p>
+        <main>
+            <section className="about-hero">
+                <div className="about-foto-marco animar">
+                    <img
+                        src="/fotos/angela.jpg"
+                        alt="Angela"
+                        className="about-foto"
+                        onError={(e) => { e.target.src = "https://via.placeholder.com/300x400/12111A/ECE8E1?text=Angela"; }}
+                    />
                 </div>
-                <div>
-                    <span className="detalle-sigilo">LÓGICA & BACKEND</span>
-                    <p className="mt-m">
-                        Estructuras escalables en Java y Python. MySQL y Node.js. Seguridad por defecto.
-                    </p>
-                </div>
-                <div>
-                    <span className="detalle-sigilo">ESTRATEGIA DE MARCA</span>
-                    <p className="mt-m">
-                        Consultoría de imagen profesional. Branding estratégico y Ciberseguridad corporativa.
+
+                <h1 className="about-titulo texto-cromo animar retraso-1">Angela</h1>
+
+                <div className="about-cita-principal animar retraso-2">
+                    <p className="cita-editorial">
+                        "Soy diseñadora y desarrolladora web con base en Madrid.
+                        Trabajo en la intersección entre la imagen corporativa y la tecnología —
+                        construyendo marcas que tienen coherencia visual desde el primer píxel
+                        hasta la última pantalla. Me interesa el diseño que comunica sin explicarse."
                     </p>
                 </div>
             </section>
 
-            <div className="mt-xl seccion">
-                <p>
-                    DISPONIBLE PARA COLABORACIONES ESTRATÉGICAS Y PROYECTOS DE ALTO IMPACTO EN 2026.
-                </p>
-            </div>
-        </div>
+            <section className="skills-grid animar retraso-3">
+                <div className="skill-columna">
+                    <h4 className="etiqueta">01 / Diseño visual</h4>
+                    <div className="skill-tags">
+                        <span className="skill-tag">Figma</span>
+                        <span className="skill-tag">Illustrator</span>
+                        <span className="skill-tag">Photoshop</span>
+                        <span className="skill-tag">InDesign</span>
+                    </div>
+                </div>
+
+                <div className="skill-columna">
+                    <h4 className="etiqueta">02 / Desarrollo web</h4>
+                    <div className="skill-tags">
+                        <span className="skill-tag">React</span>
+                        <span className="skill-tag">HTML/CSS</span>
+                        <span className="skill-tag">JavaScript</span>
+                        <span className="skill-tag">Vite</span>
+                    </div>
+                </div>
+
+                <div className="skill-columna">
+                    <h4 className="etiqueta">03 / Imagen corporativa</h4>
+                    <div className="skill-tags">
+                        <span className="skill-tag">Asesoría corporativa</span>
+                        <span className="skill-tag">Branding</span>
+                        <span className="skill-tag">Identidad visual</span>
+                    </div>
+                </div>
+            </section>
+
+            <section className="seccion-reviews">
+                <div className="review-item animar">
+                    <p className="review-cita">
+                        <span className="review-deco">✦</span>
+                        El rediseño corporativo que implementó transformó la percepción internacional de nuestra startup en apenas un mes.
+                    </p>
+                    <p className="review-autor">Verónica Valles / Directora creativa</p>
+                </div>
+
+                <div className="review-item animar retraso-1">
+                    <p className="review-cita">
+                        <span className="review-deco">✦</span>
+                        Su código no solo es estético; la velocidad de carga multiplicó nuestra retención de usuarios. Pura infraestructura sólida.
+                    </p>
+                    <p className="review-autor">Studio Vortex / Agencia tech</p>
+                </div>
+            </section>
+        </main>
     );
 }

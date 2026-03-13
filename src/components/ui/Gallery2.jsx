@@ -2,92 +2,104 @@ import { useState } from "react";
 import VisorMovil from "./VisorMovil";
 
 const proyectos = [
-    // WEB
-    { id: 101, categoria: "web", src: "/web/image.png", alt: "Desarrollo Web 01", tamaño: "total", tipo: "imagen" },
-    { id: 102, categoria: "web", src: "/web/image (1).png", alt: "Desarrollo Web 02", tamaño: "ancho", tipo: "imagen" },
-    { id: 103, categoria: "web", src: "/web/image (2).png", alt: "Desarrollo Web 03", tamaño: "medio", tipo: "imagen" },
-    
-    // BRANDING
-    { id: 201, categoria: "branding", src: "/branding/lavivienne.jpg", alt: "Branding La Vivienne", tamaño: "medio", tipo: "imagen" },
-    { id: 202, categoria: "branding", src: "/branding/nokia.jpg", alt: "Branding Nokia Concept", tamaño: "ancho", tipo: "imagen" },
-    { id: 203, categoria: "branding", src: "/branding/puf1.PNG", alt: "Branding Puf 1", tamaño: "medio", tipo: "imagen" },
-    { id: 204, categoria: "branding", src: "/branding/puf2.PNG", alt: "Branding Puf 2", tamaño: "medio", tipo: "imagen" },
-    { id: 205, categoria: "branding", src: "/branding/revista.pdf", alt: "Revista Branding PDF", tamaño: "total", tipo: "pdf" },
-
-    // DISEÑO (IMAGEN)
-    { id: 301, categoria: "imagen", src: "/diseño/poster.png", alt: "Diseño Poster", tamaño: "total", tipo: "imagen" },
-    { id: 302, categoria: "imagen", src: "/diseño/recurso.png", alt: "Recurso Gráfico", tamaño: "medio", tipo: "imagen" },
-    { id: 303, categoria: "imagen", src: "/diseño/starstar.png", alt: "Diseño Star", tamaño: "ancho", tipo: "imagen" },
-    { id: 304, categoria: "imagen", src: "/diseño/vw1.jpg", alt: "Visual 1", tamaño: "medio", tipo: "imagen" },
-    { id: 305, categoria: "imagen", src: "/diseño/vw2.jpg", alt: "Visual 2", tamaño: "total", tipo: "imagen" },
-    { id: 306, categoria: "imagen", src: "/diseño/vw3.jpg", alt: "Visual 3", tamaño: "ancho", tipo: "imagen" },
-    { id: 307, categoria: "imagen", src: "/diseño/vw4.jpg", alt: "Visual 4", tamaño: "medio", tipo: "imagen" },
-];
-
-const categorias = [
-    { clave: "todos", etiqueta: "Todos" },
-    { clave: "web", etiqueta: "Desarrollo web" },
-    { clave: "branding", etiqueta: "Branding" },
-    { clave: "imagen", etiqueta: "Imagen corporativa" },
+    { id: 101, titulo: "Vortex Web", categoria: "web", src: "/web/image.png", tipo: "imagen" },
+    { id: 102, titulo: "Evolve UI", categoria: "web", src: "/web/image (1).png", tipo: "imagen" },
+    { id: 103, titulo: "Minimal Lux", categoria: "web", src: "/web/image (2).png", tipo: "imagen" },
+    { id: 201, titulo: "La Vivienne", categoria: "branding", src: "/branding/lavivienne.jpg", tipo: "imagen" },
+    { id: 202, titulo: "Revista Vanguard", categoria: "branding", src: "/branding/revista.pdf", tipo: "pdf" },
+    { id: 301, titulo: "Poster Art", categoria: "diseño", src: "/diseño/poster.png", tipo: "imagen" },
+    { id: 305, titulo: "Visual System", categoria: "diseño", src: "/diseño/vw2.jpg", tipo: "imagen" },
 ];
 
 export default function Gallery2() {
     const [activa, setActiva] = useState("todos");
     const [pdfSeleccionado, setPdfSeleccionado] = useState(null);
+    const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+    const [indiceGaleria, setIndiceGaleria] = useState(0);
 
-    const filtrados = activa === "todos"
-        ? proyectos
-        : proyectos.filter(p => p.categoria === activa);
+    const carruselProyectos = proyectos.filter(p => p.categoria === "diseño" || p.categoria === "branding");
+    const itemsCarrusel = activa === "todos" ? carruselProyectos : proyectos.filter(p => p.categoria === activa && (activa === "diseño" || activa === "branding"));
+    const itemsWeb = activa === "todos" ? proyectos.filter(p => p.categoria === "web") : proyectos.filter(p => p.categoria === "web" && (activa === "todos" || activa === "web"));
+
+    const manejarNavegacion = (direccion) => {
+        const total = itemsCarrusel.length;
+        if (total === 0) return;
+        setIndiceGaleria((prev) => (prev + direccion + total) % total);
+    };
 
     return (
-        <section className="seccion entrar">
-            <div className="mb-l">
-                <span className="detalle-sigilo">ARCHIVO DE TRABAJO</span>
-                <h2 className="brillo">OBRAS_</h2>
-            </div>
-
-            <nav className="filtros-contenedor">
-                {categorias.map(cat => (
+        <section>
+            <nav className="menu-filtros animar">
+                {["todos", "diseño", "branding", "web"].map(cat => (
                     <button
-                        key={cat.clave}
-                        onClick={() => setActiva(cat.clave)}
-                        className={`boton-filtro ${activa === cat.clave ? "activo" : ""}`}
+                        key={cat}
+                        onClick={() => { setActiva(cat); setIndiceGaleria(0); }}
+                        className={`filtro-tab etiqueta ${activa === cat ? "activo" : ""}`}
                     >
-                        {cat.etiqueta}
+                        {cat}
                     </button>
                 ))}
             </nav>
 
-            <ul className="galeria">
-                {filtrados.map(proyecto => (
-                    <li
-                        key={proyecto.id}
-                        className={`galeria-item ${proyecto.tamaño}`}
-                    >
-                        {proyecto.tipo === "pdf" ? (
-                            <div className="pdf-tarjeta">
-                                <span className="detalle-sigilo">DOCUMENTO PDF</span>
-                                <h3 className="mb-m">REVISTA_BRANDING</h3>
-                                <button 
-                                    onClick={() => setPdfSeleccionado(proyecto.src)}
-                                    className="boton-toggle"
-                                >
-                                    VISTA PREVIA MÓVIL
-                                </button>
-                                <a href={proyecto.src} target="_blank" rel="noreferrer" className="redes-link mt-m" style={{fontSize: '0.7rem'}}>
-                                    DESCARGAR ARCHIVO
-                                </a>
-                            </div>
-                        ) : (
-                            <img className="galeria-imagen" src={proyecto.src} alt={proyecto.alt} />
-                        )}
-                    </li>
-                ))}
-            </ul>
+            {(activa === "todos" || activa === "diseño" || activa === "branding") && itemsCarrusel.length > 0 && (
+                <div className="carrusel-galeria">
+                    <button className="carrusel-flecha animar retraso-1" onClick={() => manejarNavegacion(-1)}>&larr;</button>
 
-            <VisorMovil 
-                pdfUrl={pdfSeleccionado} 
-                alCerrar={() => setPdfSeleccionado(null)} 
+                    <div className="carrusel-pista">
+                        <div className="carrusel-contenido" style={{ transform: `translateX(-${indiceGaleria * 640}px)` }}>
+                            {itemsCarrusel.map(proyecto => (
+                                <div
+                                    key={proyecto.id}
+                                    className="tarjeta tarjeta-carrusel"
+                                    onClick={() => {
+                                        if (proyecto.tipo === "pdf") setPdfSeleccionado(proyecto.src);
+                                        else setImagenSeleccionada(proyecto.src);
+                                    }}
+                                >
+                                    {proyecto.tipo === "pdf" ? (
+                                        <div className="tarjeta-pdf-contenido">
+                                            <span className="etiqueta tarjeta-pdf-etiqueta">Documento PDF</span>
+                                            <h3 className="tarjeta-pdf-titulo">{proyecto.titulo}</h3>
+                                            <p className="tarjeta-pdf-accion">Click para abrir visor</p>
+                                        </div>
+                                    ) : (
+                                        <img src={proyecto.src} alt={proyecto.titulo} className="tarjeta-carrusel-img" />
+                                    )}
+                                    <div className="tarjeta-carrusel-info">
+                                        <span className="etiqueta">{proyecto.categoria}</span>
+                                        <h3 className="tarjeta-carrusel-nombre">{proyecto.titulo}</h3>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button className="carrusel-flecha animar retraso-1" onClick={() => manejarNavegacion(1)}>&rarr;</button>
+                </div>
+            )}
+
+            {(activa === "todos" || activa === "web") && itemsWeb.length > 0 && (
+                <div className="grid-web animar retraso-3">
+                    {itemsWeb.map(proyecto => (
+                        <div key={proyecto.id} className="grid-item tarjeta">
+                            <img src={proyecto.src} alt={proyecto.titulo} className="grid-img" />
+                            <div className="grid-overlay">
+                                <span className="etiqueta">Ver proyecto</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {imagenSeleccionada && (
+                <div className="lightbox-grain" onClick={() => setImagenSeleccionada(null)}>
+                    <img src={imagenSeleccionada} alt="Vista ampliada" className="lightbox-img" />
+                </div>
+            )}
+
+            <VisorMovil
+                pdfUrl={pdfSeleccionado}
+                alCerrar={() => setPdfSeleccionado(null)}
             />
         </section>
     );

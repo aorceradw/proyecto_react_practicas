@@ -2,28 +2,28 @@ export default function VisorMovil({ pdfUrl, alCerrar }) {
     if (!pdfUrl) return null;
 
     return (
-        <div className="visor-overlay" onClick={alCerrar}>
-            <div className="telefono-contenedor" onClick={(e) => e.stopPropagation()}>
-                {/* Botón de cerrar */}
-                <button className="cerrar-visor" onClick={alCerrar}>✕</button>
-                
-                {/* Marco del teléfono */}
-                <div className="marco-movil">
-                    <div className="altavoz-sensor"></div>
-                    <div className="pantalla-interna">
-                        <iframe 
-                            src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`} 
-                            title="Visor PDF Angela"
-                            className="iframe-pdf"
-                        ></iframe>
-                    </div>
-                    <div className="boton-home"></div>
+        <div className="lightbox-grain" onClick={alCerrar}>
+            <div className="marco-y2k animar" onClick={(e) => e.stopPropagation()}>
+                <div className="marco-muesca"></div>
+                <div className="marco-boton-lateral"></div>
+                <div className="marco-boton-lateral"></div>
+                <div className="marco-boton-izq"></div>
+
+                <div className="pantalla-y2k">
+                    <iframe
+                        src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                        title="Visor PDF"
+                        className="visor-iframe"
+                    ></iframe>
                 </div>
 
-                <div className="info-visor">
-                    <span className="detalle-sigilo">VISTA PREVIA MÓVIL</span>
-                    <p className="texto-secundario">Desliza para explorar el documento</p>
-                </div>
+                <a href={pdfUrl} target="_blank" rel="noreferrer" className="visor-boton-pdf etiqueta">
+                    Ver PDF completo
+                </a>
+
+                <button onClick={alCerrar} className="visor-cerrar">
+                    ✕ Cerrar
+                </button>
             </div>
         </div>
     );

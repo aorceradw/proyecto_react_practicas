@@ -2,17 +2,18 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header>
-            <Link to="/">
+        <header className="cabecera entrar">
+            <Link to="/" className="identidad">
                 <img src="/logo.png" alt="Angela Logo" className="logo" />
+                <h1 className="brillo">Angela</h1>
             </Link>
-            <h1>Angela</h1>
-            <nav>
+            
+            <nav className="navegacion">
                 <ul>
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="/trabajos">Trabajos</Link></li>
-                    <li><Link to="/sobre-mi">Sobre mí</Link></li>
-                    <li><a href="#contact">Contacto</a></li>
+                    <li><Link to="/">INICIO</Link></li>
+                    <li><Link to="/trabajos">PROYECTOS</Link></li>
+                    <li><Link to="/sobre-mi">BIO</Link></li>
+                    <li><a href="#contacto">CONTACTO</a></li>
                 </ul>
             </nav>
         </header>

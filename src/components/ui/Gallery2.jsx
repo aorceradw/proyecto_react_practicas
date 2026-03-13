@@ -44,19 +44,12 @@ export default function Gallery2() {
                 <h2 className="brillo">OBRAS_</h2>
             </div>
 
-            <nav className="mb-l" style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <nav className="filtros-contenedor">
                 {categorias.map(cat => (
                     <button
                         key={cat.clave}
                         onClick={() => setActiva(cat.clave)}
-                        className={`boton ${activa === cat.clave ? "" : "brillo"}`}
-                        style={{ 
-                            padding: '0.8rem 1.5rem', 
-                            fontSize: '0.8rem',
-                            background: activa === cat.clave ? 'var(--crema)' : 'transparent',
-                            color: activa === cat.clave ? 'var(--negro)' : 'var(--crema)',
-                            border: '1px solid var(--borde)'
-                        }}
+                        className={`boton-filtro ${activa === cat.clave ? "activo" : ""}`}
                     >
                         {cat.etiqueta}
                     </button>
@@ -70,10 +63,10 @@ export default function Gallery2() {
                         className={`galeria-item ${proyecto.tamaño}`}
                     >
                         {proyecto.tipo === "pdf" ? (
-                            <div className="pdf-contenedor" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: 'rgba(232, 196, 188, 0.05)', gap: '1rem' }}>
+                            <div className="pdf-tarjeta">
                                 <span className="detalle-sigilo">DOCUMENTO PDF</span>
-                                <h3 style={{ fontSize: '1.5rem' }}>REVISTA_BRANDING</h3>
-                                <a href={proyecto.src} target="_blank" rel="noreferrer" className="boton" style={{ padding: '0.5rem 1rem', fontSize: '0.7rem' }}>
+                                <h3 className="mb-m">REVISTA_BRANDING</h3>
+                                <a href={proyecto.src} target="_blank" rel="noreferrer" className="boton-toggle">
                                     ABRIR ARCHIVO
                                 </a>
                             </div>

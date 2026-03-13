@@ -10,6 +10,14 @@
     --suave:        cubic-bezier(0.2, 1, 0.2, 1);
 }
 
+.modo-claro {
+    --negro:        #fcfaf7;
+    --crema:        #0a0a0a;
+    --rosa-metal:   #a67c74;
+    --borde:        rgba(10, 10, 10, 0.1);
+    --fondo-caja:   rgba(10, 10, 10, 0.05);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -102,6 +110,13 @@ h1, h2, h3, h4 {
     gap: 5rem;
 }
 
+.fila-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .identidad {
     display: flex;
     align-items: center;
@@ -166,6 +181,30 @@ h1, h2, h3, h4 {
     list-style: none;
 }
 
+.filtros-contenedor {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.boton-filtro {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+    background: transparent;
+    color: var(--crema);
+    border: 1px solid var(--borde);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    transition: 0.3s var(--suave);
+}
+
+.boton-filtro.activo {
+    background: var(--crema);
+    color: var(--negro);
+}
+
 .galeria-item {
     overflow: hidden;
     background: var(--negro);
@@ -188,6 +227,18 @@ h1, h2, h3, h4 {
 .ancho { grid-column: span 7; aspect-ratio: 16/10; }
 .medio { grid-column: span 5; aspect-ratio: 16/10; }
 .total { grid-column: span 12; aspect-ratio: 21/9; }
+
+/* PDF en Galería */
+.pdf-tarjeta {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--fondo-caja);
+    gap: 1.5rem;
+    padding: 2rem;
+}
 
 /* Formulario */
 .formulario {
@@ -240,6 +291,52 @@ h1, h2, h3, h4 {
 .boton:hover {
     background: var(--rosa-metal);
     transform: scale(0.98);
+}
+
+/* Selector Modo Color */
+.selector-modo {
+    position: relative;
+    z-index: 100;
+}
+
+.boton-toggle {
+    background: transparent;
+    border: 1px solid var(--borde);
+    cursor: pointer;
+    transition: 0.3s var(--suave);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 45px;
+    height: 45px;
+}
+
+.icono-tema {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: 0.5s var(--suave);
+}
+
+.modo-oscuro .icono-tema {
+    filter: invert(1);
+}
+
+.modo-claro .icono-tema {
+    filter: invert(0);
+}
+
+.boton-toggle:hover {
+    background: var(--crema);
+}
+
+.boton-toggle:hover .icono-tema {
+    filter: invert(1);
+}
+
+.modo-claro .boton-toggle:hover .icono-tema {
+    filter: invert(1);
 }
 
 /* Pie */

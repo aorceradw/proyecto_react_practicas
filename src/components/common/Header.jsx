@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
+import ModoColor from "../ui/ModoColor";
 
 export default function Header() {
     return (
         <header className="cabecera entrar">
-            <Link to="/" className="identidad">
-                <img src="/logo.png" alt="Angela Logo" className="logo" />
-                <h1 className="brillo">Angela</h1>
-            </Link>
+            <div className="fila-cabecera">
+                <Link to="/" className="identidad">
+                    <img src="/logo.png" alt="Angela Logo" className="logo" />
+                    <h1 className="brillo">Angela</h1>
+                </Link>
+                <ModoColor />
+            </div>
             
             <nav className="navegacion">
                 <ul>

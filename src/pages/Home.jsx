@@ -1,4 +1,4 @@
-import Gallery from "../components/ui/Gallery";
+import Gallery2 from "../components/ui/Gallery2";
 import Reviews from "../components/ui/Reviews";
 import Form from "../components/ui/Form";
 
@@ -15,7 +15,7 @@ export default function Home() {
                 </p>
             </section>
 
-            <Gallery />
+            <Gallery2 />
             <Reviews />
             <Form />
         </div>

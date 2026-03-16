@@ -1,11 +1,25 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import SobreMi from "./pages/Sobre-Mi";
+import Work from "./pages/Work";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <p className="read-the-docs">
-        Haz clic en los logos de Vite y React para saber más.
-      </p>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/trabajos" element={<Work />} />
+            <Route path="/sobre-mi" element={<SobreMi />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

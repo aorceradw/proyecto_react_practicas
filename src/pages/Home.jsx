@@ -1,48 +1,80 @@
-import { Link } from "react-router-dom";
-import Form from "../components/ui/Form";
+import { Link } from 'react-router-dom';
+import Form from '../components/Form';
+import Opiniones from '../components/Opiniones';
+
+function AnimacionTitulo({ texto }) {
+  return (
+    <div className="titulo-hero">
+      {texto.split('').map((char, i) => (
+        <span 
+          key={i} 
+          className="letra titulo-stroke" 
+          style={{ animationDelay: `${i * 0.05}s` }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
-    return (
-        <main>
-            <section className="hero-contenedor">
-                <video autoPlay loop muted playsInline className="hero-video">
-                    <source src="/videos/hero.mp4" type="video/mp4" />
-                </video>
-                <div className="hero-overlay"></div>
+  return (
+    <div className="home-page">
+      <section className="hero">
+        <video className="hero-video" autoPlay muted loop playsInline src="/videos/hero.mp4" />
+        <div className="hero-overlay" />
+        <div className="hero-contenido">
+          <AnimacionTitulo texto="ANGELA" />
+          <p className="hero-sub animar retraso-3">Frontend · Imagen · Granada</p>
+          <Link to="/trabajos" className="hero-cta animar retraso-4">
+            Proyectos
+          </Link>
+        </div>
+        
+        <div className="scroll-indicator animar retraso-4">
+          <div className="linea-pulso" />
+          <span className="scroll-txt">Scroll</span>
+        </div>
+      </section>
 
-                <div className="hero-contenido">
-                    <h1 className="hero-titulo texto-cromo animar">Angela</h1>
-                    <p className="hero-subtitulo animar retraso-1">Desarrollo web · Imagen corporativa · Diseño gráfico</p>
-                    <Link to="/trabajos" className="hero-cta animar retraso-2">Ver proyectos</Link>
-                </div>
+      <div className="marquee">
+        <div className="marquee-pista">
+          {[...Array(4)].map((_, i) => (
+            <span key={i}>
+              Branding · Desarrollo web · Imagen corporativa · Diseño gráfico · Granada ·&nbsp;
+            </span>
+          ))}
+        </div>
+      </div>
 
-                <div className="hero-scroll"></div>
-            </section>
+      <section className="servicios-grid">
+        <div className="tarjeta srv-1 animar">
+          <span className="etiqueta-num">01</span>
+          <h3 className="titulo-stroke">Branding</h3>
+          <p>Identidades que trascienden el código. Construyo marcas con solvencia técnica y visual.</p>
+        </div>
 
-            <div className="marquee-contenedor">
-                <div className="marquee-texto">
-                    Desarrollo web · Imagen corporativa · Branding · Diseño gráfico · Desarrollo web · Imagen corporativa · Branding · Diseño gráfico · Desarrollo web · Imagen corporativa · Branding · Diseño gráfico ·&nbsp;
-                </div>
-            </div>
+        <div className="tarjeta srv-2 animar">
+          <span className="etiqueta-num">02</span>
+          <h3 className="titulo-stroke">Desarrollo</h3>
+          <p>Frontend con criterio. Interfaces que respiran la marca en cada clic.</p>
+        </div>
 
-            <section className="seccion-servicios">
-                <div className="tarjeta servicio-tarjeta servicio-1 animar">
-                    <span className="etiqueta">01</span>
-                    <h3 className="servicio-titulo">Desarrollo web</h3>
-                </div>
+        <div className="tarjeta srv-3 animar">
+          <div className="srv-txt">
+            <span className="etiqueta-num">03</span>
+            <h3 className="titulo-stroke">Imagen Corp.</h3>
+            <p>Estrategia visual completa. Unifico el discurso de marca en todos sus puntos digitales.</p>
+          </div>
+          <div className="srv-decor" style={{textAlign: 'right'}}>
+            <span className="texto-cromo" style={{fontSize: '5rem'}}>✦</span>
+          </div>
+        </div>
+      </section>
 
-                <div className="tarjeta servicio-tarjeta servicio-2 animar retraso-1">
-                    <span className="etiqueta">02</span>
-                    <h3 className="servicio-titulo">Imagen corporativa</h3>
-                </div>
-
-                <div className="tarjeta servicio-tarjeta servicio-3 animar retraso-2">
-                    <span className="etiqueta">03</span>
-                    <h3 className="servicio-titulo">Diseño de marca</h3>
-                </div>
-            </section>
-
-            <Form />
-        </main>
-    );
+      <Form />
+      <Opiniones />
+    </div>
+  );
 }

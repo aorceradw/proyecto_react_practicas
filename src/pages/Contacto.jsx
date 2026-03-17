@@ -1,3 +1,5 @@
+import FormularioContacto from "../components/FormularioContacto";
+
 export default function Contacto() {
     return (
         <main className="seccion-contacto">
@@ -73,6 +75,7 @@ export default function Contacto() {
             </section>
             
             <section className="contacto-contenedor-formulario animar retraso-2">
+                <FormularioContacto />
             </section>
 
         </main>

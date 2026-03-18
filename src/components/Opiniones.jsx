@@ -1,27 +1,33 @@
-import { useState } from 'react';
-
-const REVIEWS_FIJAS = [
-    {
-        id: 1,
-        autor: "Nombre cliente",
-        rol: "CEO — Empresa",
-        cita: "Angela entiende la marca antes de escribir una sola línea de código. Técnica, directa y con una visión estética que marca la diferencia."
-    },
-    {
-        id: 2,
-        autor: "Nombre cliente",
-        rol: "Directora — Identidad de marca",
-        cita: "Combinar asesoría de imagen con desarrollo web nos dio una coherencia visual que antes no teníamos. Supo leer exactamente lo que necesitábamos."
-    }
-];
+import { useState, useEffect } from 'react';
 
 export default function Reviews() {
+    const [opiniones, setOpiniones] = useState([]);
     const [formulario, setFormulario] = useState({
         autor: '',
         rol: '',
         cita: ''
     });
-    const [estado, setEstado] = useState('idle'); 
+    const [estado, setEstado] = useState('idle');
+    const [cargando, setCargando] = useState(true);
+
+    // Cargar opiniones desde el backend
+    const cargarOpiniones = async () => {
+        try {
+            const res = await fetch('http://localhost:3001/api/opiniones');
+            if (res.ok) {
+                const data = await res.json();
+                setOpiniones(data);
+            }
+        } catch (error) {
+            console.error('Error al cargar opiniones:', error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    useEffect(() => {
+        cargarOpiniones();
+    }, []);
 
     function manejarCambio(e) {
         setFormulario({ ...formulario, [e.target.name]: e.target.value });
@@ -41,6 +47,8 @@ export default function Reviews() {
             if (res.ok) {
                 setEstado('ok');
                 setFormulario({ autor: '', rol: '', cita: '' });
+                cargarOpiniones(); // Recargar la lista
+                setTimeout(() => setEstado('idle'), 5000);
             } else {
                 setEstado('error');
             }
@@ -58,23 +66,29 @@ export default function Reviews() {
             </div>
 
             <div className="opiniones-lista">
-                {REVIEWS_FIJAS.map((item, index) => (
-                    <article
-                        key={item.id}
-                        className={`opinion animar retraso-${index + 1}`}
-                    >
-                        <span className="opinion-marcador">☆</span>
-                        <div className="opinion-contenido">
-                            <blockquote className="opinion-cita">
-                                "{item.cita}"
-                            </blockquote>
-                            <div className="opinion-meta">
-                                <span className="opinion-autor">{item.autor}</span>
-                                <span className="opinion-rol">{item.rol}</span>
+                {cargando ? (
+                    <p style={{ color: '#fff' }}>Cargando opiniones...</p>
+                ) : opiniones.length > 0 ? (
+                    opiniones.map((item, index) => (
+                        <article
+                            key={item.id}
+                            className={`opinion animar retraso-${(index % 3) + 1}`}
+                        >
+                            <span className="opinion-marcador">☆</span>
+                            <div className="opinion-contenido">
+                                <blockquote className="opinion-cita">
+                                    "{item.cita}"
+                                </blockquote>
+                                <div className="opinion-meta">
+                                    <span className="opinion-autor">{item.autor}</span>
+                                    <span className="opinion-rol">{item.rol}</span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                ))}
+                        </article>
+                    ))
+                ) : (
+                    <p style={{ color: '#aaa', fontStyle: 'italic' }}>Aún no hay opiniones. ¡Sé la primera persona en dejar una!</p>
+                )}
             </div>
 
             <div className="opiniones-formulario">

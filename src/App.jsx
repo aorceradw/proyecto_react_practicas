@@ -1,12 +1,24 @@
-function App() {
-  return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <p className="read-the-docs">
-        Haz clic en los logos de Vite y React para saber más.
-      </p>
-    </div>
-  );
-}
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-export default App;
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import Work from './pages/Work';
+import SobreMi from './pages/Sobre-Mi';
+
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Header />
+            <main className="main">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/trabajos" element={<Work />} />
+                    <Route path="/sobre-mi" element={<SobreMi />} />
+                </Routes>
+            </main>
+            <Footer />
+        </BrowserRouter>
+    );
+}

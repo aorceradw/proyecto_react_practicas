@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import GaleriaDiseño from '../components/GaleriaDiseño';
-import GaleriaWeb from '../components/GaleriaWeb';
-import GaleriaImagen from '../components/GaleriaImagen';
+import GaleriaDiseño from '../components/Galeriadiseño';
+import GaleriaWeb from '../components/Galeriaweb';
+import GaleriaImagen from '../components/Galeriaimagen';
 
 const CATEGORIAS = [
     { clave: 'diseño', etiqueta: 'Diseño gráfico' },

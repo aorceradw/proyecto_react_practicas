@@ -1,15 +1,15 @@
+import Skills from '../components/Skills';
+
 export default function About() {
     return (
         <section className="sobre-mi">
-
             <div className="sobre-cabecera">
-                <span className="etiqueta">Sobre mí</span>
+                <span className="etiqueta">Snapshot</span>
                 <h1 className="sobre-titulo">Ángela</h1>
-                <span className="sobre-ubicacion">Granada, España</span>
+                <span className="sobre-ubicacion">Granada — Worldwide</span>
             </div>
 
             <div className="sobre-cuerpo">
-
                 <div className="sobre-visual">
                     <div className="sobre-sigil">
                         <div className="sobre-sigil-circulo sobre-sigil-circulo--grande" />
@@ -22,73 +22,48 @@ export default function About() {
                     <span className="sobre-inicial">A_</span>
                 </div>
 
-                {/* Columna de texto */}
                 <div className="sobre-texto">
-
-                    {/* Roles */}
-                    <div className="sobre-roles">
-                        <div className="sobre-rol sobre-rol--activo">
-                            <span className="sobre-rol-numero">01</span>
-                            <span className="sobre-rol-nombre">Desarrolladora web</span>
-                        </div>
-                        <div className="sobre-rol">
-                            <span className="sobre-rol-numero">02</span>
-                            <span className="sobre-rol-nombre">Asesora de imagen</span>
-                        </div>
-                        <div className="sobre-rol">
-                            <span className="sobre-rol-numero">03</span>
-                            <span className="sobre-rol-nombre">Diseñadora gráfica</span>
-                        </div>
-                    </div>
-
                     <div className="sobre-bio">
                         <p className="sobre-bio-parrafo">
-                            Soy Ángela. Desde Granada, construyo identidades
-                            visuales y las estructuras digitales que las sostienen.
+                            No entiendo el diseño sin la técnica, ni el código sin la estética. 
+                            Desde Granada, me dedico a elevar marcas a través de interfaces que no solo 
+                            funcionan, sino que se sienten.
                         </p>
+                        
                         <p className="sobre-bio-parrafo">
-                            Mi punto de partida es una convicción simple: la
-                            tecnología y la estética hablan el mismo idioma.
-                            Cuando las dos se alinean de verdad, el resultado
-                            se nota.
+                            Vengo del mundo visual, pero me quedé por la arquitectura del software. 
+                            Esa dualidad me permite moverme entre el píxel y el servidor con una 
+                            única obsesión: la coherencia absoluta.
                         </p>
+
                         <p className="sobre-bio-parrafo">
-                            Me muevo entre el back y el front con la misma
-                            naturalidad — porque entiendo que una marca no
-                            puede permitirse que su web contradiga lo que
-                            proyecta en el mundo. Esa mirada híbrida es mi
-                            valor real.
+                            Creo en marcas con fondo, no solo con fachada. Mi trabajo consiste en 
+                            traducir esa esencia interna en estructuras digitales sólidas, elegantes 
+                            y, sobre todo, contemporáneas.
                         </p>
+
                         <p className="sobre-bio-parrafo">
-                            Creo en el proceso de mirar hacia dentro antes
-                            de construir hacia fuera. Ayudo a las marcas a
-                            entender su propia esencia — no para definirlas,
-                            sino para que lo que construimos juntos tenga
-                            coherencia desde el primer pixel.
+                            Sin ruido innecesario. Solo intención, rigor y un poco de intuición.
                         </p>
-                        <p className="sobre-bio-parrafo">
-                            Cada línea de código tiene una intención.
-                            Cada decisión visual tiene un porqué.
-                            Así es como trabajo.
-                        </p>
+
                         <p className="sobre-bio-cierre">
-                            Ahora mismo compagino proyectos freelance con
-                            formación técnica constante. Busco equipos donde
-                            el rigor y la sensibilidad no sean cosas distintas.
+                            Actualmente navegando entre proyectos freelance y el tramo de DAW. 
+                            Busco espacios donde la creatividad sea una decisión técnica y el código, 
+                            una pieza de diseño más.
                         </p>
                     </div>
-
                 </div>
             </div>
 
+            <Skills />
+        
             <div className="sobre-estado">
-                <span className="etiqueta">DAW en curso</span>
+                <span className="etiqueta">DAW 25/26</span>
                 <span className="sobre-estado-separador" aria-hidden="true" />
-                <span className="etiqueta">Freelance disponible</span>
+                <span className="etiqueta">Open to work</span>
                 <span className="sobre-estado-separador" aria-hidden="true" />
-                <span className="etiqueta">Abierta a equipo</span>
+                <span className="etiqueta">Creative Dev</span>
             </div>
-
         </section>
     );
-}
+}

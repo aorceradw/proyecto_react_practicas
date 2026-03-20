@@ -29,6 +29,15 @@ export default function Home() {
     return (
         <main className="home">
 
+            {/* 0. Pre-Hero Image */}
+            <div className="home-pre-hero animar">
+                <img 
+                    src="/images/portfolio.png" 
+                    alt="Angela Portfolio Branding" 
+                    className="home-pre-hero-img" 
+                />
+            </div>
+
             {/* 1. Hero */}
             <Hero />
 

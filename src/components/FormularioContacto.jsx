@@ -1,29 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const API = import.meta.env.VITE_API_URL;
 
-export default function FormularioContacto() {
-    const [formulario, setFormulario] = useState({
-        nombre: '', email: '', empresa: '', tipo_solicitud: '', mensaje: ''
-    });
-    const [estado, setEstado] = useState('idle');
+export default function Opiniones() {
+    const [opiniones, setOpiniones] = useState([]);
+    const [form, setForm]           = useState({ autor: '', rol: '', cita: '' });
+    const [estado, setEstado]       = useState('idle');
+    const [cargando, setCargando]   = useState(true);
 
-    function manejarCambio(e) {
-        setFormulario({ ...formulario, [e.target.name]: e.target.value });
+    const cargarOpiniones = async () => {
+        try {
+            const res = await fetch(`${API}/api/opiniones`);
+            if (res.ok) setOpiniones(await res.json());
+        } catch (error) {
+            console.error('Error al cargar opiniones:', error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    useEffect(() => {
+        cargarOpiniones();
+    }, []);
+
+    function handleChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    async function enviarMensaje(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setEstado('enviando');
         try {
-            const res = await fetch(`${API}/api/contactos`, {
+            const res = await fetch(`${API}/api/opiniones`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formulario)
+                body: JSON.stringify(form),
             });
             if (res.ok) {
                 setEstado('ok');
-                setFormulario({ nombre: '', email: '', empresa: '', tipo_solicitud: '', mensaje: '' });
+                setForm({ autor: '', rol: '', cita: '' });
+                cargarOpiniones();
                 setTimeout(() => setEstado('idle'), 5000);
             } else {
                 setEstado('error');
@@ -34,50 +50,60 @@ export default function FormularioContacto() {
     }
 
     return (
-        <form id="formulario" onSubmit={enviarMensaje}>
+        <section className="opiniones">
 
-            <div className="formulario-doble">
-                <div className="campo">
-                    <label htmlFor="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" value={formulario.nombre} onChange={manejarCambio} placeholder="Tu nombre" required />
-                </div>
-                <div className="campo">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" name="email" value={formulario.email} onChange={manejarCambio} placeholder="hola@ejemplo.com" required />
-                </div>
+            <div className="opiniones-cabecera">
+                <span className="etiqueta">Colaboraciones</span>
+                <h2>Lo que dicen</h2>
             </div>
 
-            <div className="formulario-doble">
-                <div className="campo">
-                    <label htmlFor="empresa">Empresa o marca</label>
-                    <input type="text" id="empresa" name="empresa" value={formulario.empresa} onChange={manejarCambio} placeholder="Opcional" />
-                </div>
-                <div className="campo">
-                    <label htmlFor="tipo_solicitud">En qué puedo ayudarte</label>
-                    <select id="tipo_solicitud" name="tipo_solicitud" value={formulario.tipo_solicitud} onChange={manejarCambio} required>
-                        <option value="" disabled>Selecciona una opción</option>
-                        <option value="web">Desarrollo web</option>
-                        <option value="imagen">Imagen corporativa</option>
-                        <option value="branding">Diseño de marca</option>
-                        <option value="grafico">Diseño gráfico</option>
-                        <option value="asesoria">Asesoría de imagen</option>
-                        <option value="otro">Otra cosa</option>
-                    </select>
-                </div>
+            <div className="opiniones-lista">
+                {cargando && <p>Cargando...</p>}
+
+                {!cargando && opiniones.length === 0 && (
+                    <p>Aún no hay opiniones. ¡Sé la primera!</p>
+                )}
+
+                {opiniones.map(opinion => (
+                    <article key={opinion.id} className="opinion">
+                        <blockquote>"{opinion.cita}"</blockquote>
+                        <div className="opinion-autor">
+                            <span>{opinion.autor}</span>
+                            {opinion.rol && <span>{opinion.rol}</span>}
+                        </div>
+                    </article>
+                ))}
             </div>
 
-            <div className="campo">
-                <label htmlFor="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" value={formulario.mensaje} onChange={manejarCambio} placeholder="Cuéntame sobre tu proyecto..." required />
+            <div className="opiniones-form-wrapper">
+                <span className="etiqueta">Deja tu opinión</span>
+                <h3>¿Trabajamos junt@s?</h3>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="campo">
+                        <label htmlFor="autor">Nombre</label>
+                        <input type="text" id="autor" name="autor" value={form.autor} onChange={handleChange} placeholder="Tu nombre" required />
+                    </div>
+
+                    <div className="campo">
+                        <label htmlFor="rol">Cargo o empresa</label>
+                        <input type="text" id="rol" name="rol" value={form.rol} onChange={handleChange} placeholder="CEO — Empresa" />
+                    </div>
+
+                    <div className="campo">
+                        <label htmlFor="cita">Tu opinión</label>
+                        <textarea id="cita" name="cita" value={form.cita} onChange={handleChange} placeholder="Cuéntame tu experiencia..." required />
+                    </div>
+
+                    <button type="submit" disabled={estado === 'enviando'}>
+                        {estado === 'enviando' ? 'Enviando...' : 'Enviar'}
+                    </button>
+
+                    {estado === 'ok'    && <p className="mensaje-ok">Opinión enviada. Gracias.</p>}
+                    {estado === 'error' && <p className="mensaje-error">Algo falló. Inténtalo de nuevo.</p>}
+                </form>
             </div>
 
-            <button type="submit" disabled={estado === 'enviando'}>
-                {estado === 'enviando' ? 'Enviando...' : 'Enviar mensaje'}
-            </button>
-
-            {estado === 'ok'    && <p className="opiniones-ok">Mensaje enviado. Te respondo pronto.</p>}
-            {estado === 'error' && <p className="opiniones-error">Algo falló. Inténtalo de nuevo.</p>}
-
-        </form>
+        </section>
     );
 }

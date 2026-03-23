@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 
 const API = import.meta.env.VITE_API_URL;
 
-export default function Reviews() {
+export default function Opiniones() {
     const [opiniones, setOpiniones] = useState([]);
-    const [formulario, setFormulario] = useState({ autor: '', rol: '', cita: '' });
-    const [estado, setEstado] = useState('idle');
-    const [cargando, setCargando] = useState(true);
+    const [form, setForm]           = useState({ autor: '', rol: '', cita: '' });
+    const [estado, setEstado]       = useState('idle');
+    const [cargando, setCargando]   = useState(true);
 
     const cargarOpiniones = async () => {
         try {
@@ -19,24 +19,26 @@ export default function Reviews() {
         }
     };
 
-    useEffect(() => { cargarOpiniones(); }, []);
+    useEffect(() => {
+        cargarOpiniones();
+    }, []);
 
-    function manejarCambio(e) {
-        setFormulario({ ...formulario, [e.target.name]: e.target.value });
+    function handleChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    async function enviarOpinion(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setEstado('enviando');
         try {
             const res = await fetch(`${API}/api/opiniones`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formulario)
+                body: JSON.stringify(form),
             });
             if (res.ok) {
                 setEstado('ok');
-                setFormulario({ autor: '', rol: '', cita: '' });
+                setForm({ autor: '', rol: '', cita: '' });
                 cargarOpiniones();
                 setTimeout(() => setEstado('idle'), 5000);
             } else {
@@ -52,59 +54,53 @@ export default function Reviews() {
 
             <div className="opiniones-cabecera">
                 <span className="etiqueta">Colaboraciones</span>
-                <h2 className="opiniones-titulo">Lo que dicen</h2>
+                <h2>Lo que dicen</h2>
             </div>
 
             <div className="opiniones-lista">
-                {cargando ? (
-                    <p className="opiniones-cargando">Cargando opiniones...</p>
-                ) : opiniones.length > 0 ? (
-                    opiniones.map((item, index) => (
-                        <article
-                            key={item.id}
-                            className={`opinion animar retraso-${(index % 3) + 1}`}
-                        >
-                            <span className="opinion-marcador">☆</span>
-                            <div className="opinion-contenido">
-                                <blockquote className="opinion-cita">"{item.cita}"</blockquote>
-                                <div className="opinion-meta">
-                                    <span className="opinion-autor">{item.autor}</span>
-                                    <span className="opinion-rol">{item.rol}</span>
-                                </div>
-                            </div>
-                        </article>
-                    ))
-                ) : (
-                    <p className="opiniones-vacio">Aún no hay opiniones. ¡Sé la primera persona en dejar una!</p>
+                {cargando && <p>Cargando...</p>}
+
+                {!cargando && opiniones.length === 0 && (
+                    <p>Aún no hay opiniones. ¡Sé la primera!</p>
                 )}
+
+                {opiniones.map(opinion => (
+                    <article key={opinion.id} className="opinion">
+                        <blockquote>"{opinion.cita}"</blockquote>
+                        <div className="opinion-autor">
+                            <span>{opinion.autor}</span>
+                            {opinion.rol && <span>{opinion.rol}</span>}
+                        </div>
+                    </article>
+                ))}
             </div>
 
-            <div className="opiniones-formulario">
-                <div className="opiniones-formulario-cabecera">
-                    <span className="etiqueta">Deja tu opinión</span>
-                    <h3 className="opiniones-formulario-titulo">¿Trabajamos junt@s?</h3>
-                </div>
+            <div className="opiniones-form-wrapper">
+                <span className="etiqueta">Deja tu opinión</span>
+                <h3>¿Trabajamos junt@s?</h3>
 
-                <form className="opiniones-form" onSubmit={enviarOpinion}>
+                <form onSubmit={handleSubmit}>
                     <div className="campo">
                         <label htmlFor="autor">Nombre</label>
-                        <input type="text" id="autor" name="autor" value={formulario.autor} onChange={manejarCambio} placeholder="Tu nombre" required />
+                        <input type="text" id="autor" name="autor" value={form.autor} onChange={handleChange} placeholder="Tu nombre" required />
                     </div>
+
                     <div className="campo">
                         <label htmlFor="rol">Cargo o empresa</label>
-                        <input type="text" id="rol" name="rol" value={formulario.rol} onChange={manejarCambio} placeholder="CEO — Empresa" />
+                        <input type="text" id="rol" name="rol" value={form.rol} onChange={handleChange} placeholder="CEO — Empresa" />
                     </div>
+
                     <div className="campo">
                         <label htmlFor="cita">Tu opinión</label>
-                        <textarea id="cita" name="cita" value={formulario.cita} onChange={manejarCambio} placeholder="Cuéntame tu experiencia..." required />
+                        <textarea id="cita" name="cita" value={form.cita} onChange={handleChange} placeholder="Cuéntame tu experiencia..." required />
                     </div>
 
-                    <button type="submit" className="opiniones-boton" disabled={estado === 'enviando'}>
-                        {estado === 'enviando' ? 'Enviando...' : 'Enviar opinión'}
+                    <button type="submit" disabled={estado === 'enviando'}>
+                        {estado === 'enviando' ? 'Enviando...' : 'Enviar'}
                     </button>
 
-                    {estado === 'ok'    && <p className="opiniones-ok">Opinión enviada. Gracias.</p>}
-                    {estado === 'error' && <p className="opiniones-error">Algo falló. Inténtalo de nuevo.</p>}
+                    {estado === 'ok'    && <p className="mensaje-ok">Opinión enviada. Gracias.</p>}
+                    {estado === 'error' && <p className="mensaje-error">Algo falló. Inténtalo de nuevo.</p>}
                 </form>
             </div>
 

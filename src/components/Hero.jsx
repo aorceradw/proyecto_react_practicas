@@ -1,62 +1,26 @@
-import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
+import ToggleTema from './ModoClaroOscuro';
 
-export default function Hero() {
-    const kanjiRef = useRef(null);
-    const romajiRef = useRef(null);
-    const definicionRef = useRef(null);
-    const ctaRef = useRef(null);
-    const [listo, setListo] = useState(false);
-
-    useEffect(() => {
-        setListo(true);
-    }, []);
-
-    useEffect(() => {
-        if (!listo) return;
-
-        const tl = gsap.timeline();
-
-        tl.from(kanjiRef.current, {
-            y: 80, opacity: 0, duration: 1.8, ease: 'power4.out'
-        })
-        .from(romajiRef.current, {
-            y: 30, opacity: 0, duration: 1, ease: 'power3.out'
-        }, '-=0.8')
-        .from(definicionRef.current, {
-            y: 20, opacity: 0, duration: 0.8, ease: 'power2.out'
-        }, '-=0.5')
-        .from(ctaRef.current, {
-            y: 20, opacity: 0, duration: 0.8, ease: 'power2.out'
-        }, '-=0.3');
-
-        return () => tl.kill();
-    }, [listo]);
-
+export default function Header() {
     return (
-        <section className="hero">
-            <div className="hero-overlay" />
+        <header className="header">
 
-            <div className="hero-contenido">
-                <h1 ref={kanjiRef} className="hero-kanji">進化</h1>
-                <div ref={romajiRef} className="hero-romaji">
-                    <span className="hero-barra">/</span>
-                    <span className="hero-romaji-texto">SHINKA</span>
-                    <span className="hero-barra">/</span>
-                </div>
-                <p ref={definicionRef} className="hero-definicion">
-                    Evolución. El salto que no tiene vuelta atrás.
-                </p>
-                <Link ref={ctaRef} to="/trabajos" className="hero-cta">
-                    Descubrir
-                </Link>
-            </div>
+            <Link to="/" className="logo">
+                <img src="/images/A de angela2.png" alt="Angela" />
+                <span>ANGELA</span>
+            </Link>
 
-            <div className="hero-scroll">
-                <span className="hero-scroll-linea" />
-                <span className="hero-scroll-texto">scroll</span>
-            </div>
-        </section>
+            <nav>
+                <ul>
+                    <li><Link to="/">Inicio</Link></li>
+                    <li><Link to="/trabajos">Proyectos</Link></li>
+                    <li><Link to="/sobre-mi">Sobre mí</Link></li>
+                    <li><Link to="/contacto">Contacto</Link></li>
+                </ul>
+            </nav>
+
+            <ToggleTema />
+
+        </header>
     );
 }

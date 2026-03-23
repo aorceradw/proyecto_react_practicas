@@ -1,31 +1,31 @@
 import { useState } from 'react';
-import GaleriaDiseño from '../components/Galeriadiseño';
-import GaleriaWeb from '../components/Galeriaweb';
+import GaleriaDiseño from '../components/Galeriadiseno';
+import GaleriaWeb    from '../components/Galeriaweb';
 import GaleriaImagen from '../components/Galeriaimagen';
 
 const CATEGORIAS = [
-    { clave: 'diseño', etiqueta: 'Diseño gráfico' },
-    { clave: 'web', etiqueta: 'Desarrollo web' },
-    { clave: 'imagen', etiqueta: 'Imagen corporativa' },
+    { id: 'diseno',  etiqueta: 'Diseño gráfico' },
+    { id: 'web',     etiqueta: 'Desarrollo web' },
+    { id: 'imagen',  etiqueta: 'Imagen corporativa' },
 ];
 
 export default function Work() {
-    const [activa, setActiva] = useState('diseño');
+    const [activa, setActiva] = useState('diseno');
 
     return (
         <main className="trabajos">
 
-            <div className="trabajos-cabecera animar">
+            <div className="trabajos-cabecera">
                 <span className="etiqueta">Archivo de trabajo</span>
-                <h1 className="trabajos-titulo">Proyectos</h1>
+                <h1>Proyectos</h1>
             </div>
 
-            <nav className="trabajos-filtros animar retraso-1">
+            <nav className="trabajos-filtros">
                 {CATEGORIAS.map(cat => (
                     <button
-                        key={cat.clave}
-                        className={`filtro-boton ${activa === cat.clave ? 'filtro-activo' : ''}`}
-                        onClick={() => setActiva(cat.clave)}
+                        key={cat.id}
+                        onClick={() => setActiva(cat.id)}
+                        className={activa === cat.id ? 'activo' : ''}
                     >
                         {cat.etiqueta}
                     </button>
@@ -33,7 +33,7 @@ export default function Work() {
             </nav>
 
             <div className="trabajos-galeria">
-                {activa === 'diseño'  && <GaleriaDiseño />}
+                {activa === 'diseno'  && <GaleriaDiseño />}
                 {activa === 'web'     && <GaleriaWeb />}
                 {activa === 'imagen'  && <GaleriaImagen />}
             </div>

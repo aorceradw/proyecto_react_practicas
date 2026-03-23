@@ -3,67 +3,70 @@ import Skills from '../components/Skills';
 export default function About() {
     return (
         <section className="sobre-mi">
-            <div className="sobre-cabecera">
-                <span className="etiqueta">Snapshot</span>
+
+            <div className="sobre-cabecera animar">
+                <span className="etiqueta">進化 · Shinka</span>
                 <h1 className="sobre-titulo">Ángela</h1>
-                <span className="sobre-ubicacion">Granada — Worldwide</span>
+                <span className="sobre-ubicacion">GRX, SPAIN</span>
             </div>
 
             <div className="sobre-cuerpo">
-                <div className="sobre-visual">
-                    <div className="sobre-sigil">
-                        <div className="sobre-sigil-circulo sobre-sigil-circulo--grande" />
-                        <div className="sobre-sigil-circulo sobre-sigil-circulo--medio" />
-                        <div className="sobre-sigil-circulo sobre-sigil-circulo--pequeño" />
-                        <div className="sobre-sigil-linea sobre-sigil-linea--horizontal" />
-                        <div className="sobre-sigil-linea sobre-sigil-linea--vertical" />
-                        <div className="sobre-sigil-linea sobre-sigil-linea--diagonal" />
-                    </div>
-                    <span className="sobre-inicial">A_</span>
+
+                <div className="sobre-visual animar retraso-1">
+                    <img
+                        src="/images/a de angy.png"
+                        alt="Ángela"
+                        className="sobre-foto"
+                    />
                 </div>
 
-                <div className="sobre-texto">
+                <div className="sobre-texto animar retraso-2">
                     <div className="sobre-bio">
+
                         <p className="sobre-bio-parrafo">
-                            No entiendo el diseño sin la técnica, ni el código sin la estética. 
-                            Desde Granada, me dedico a elevar marcas a través de interfaces que no solo 
-                            funcionan, sino que se sienten.
-                        </p>
-                        
-                        <p className="sobre-bio-parrafo">
-                            Vengo del mundo visual, pero me quedé por la arquitectura del software. 
-                            Esa dualidad me permite moverme entre el píxel y el servidor con una 
-                            única obsesión: la coherencia absoluta.
+                            Shinka significa evolución. El salto que no tiene
+                            vuelta atrás. No me adapto a los moldes,
+                            los rediseño. Esa es mi filosofía, mi estética
+                            y mi forma de escribir código.
                         </p>
 
                         <p className="sobre-bio-parrafo">
-                            Creo en marcas con fondo, no solo con fachada. Mi trabajo consiste en 
-                            traducir esa esencia interna en estructuras digitales sólidas, elegantes 
-                            y, sobre todo, contemporáneas.
+                            Soy desarrolladora fullstack en formación y asesora
+                            de imagen corporativa. Dos mundos que para mí siempre
+                            han sido el mismo: el código es moda, la moda es
+                            arquitectura, y las dos son poder cuando sabes
+                            exactamente lo que estás diciendo.
                         </p>
 
                         <p className="sobre-bio-parrafo">
-                            Sin ruido innecesario. Solo intención, rigor y un poco de intuición.
+                            Construyo interfaces con React y Node igual que
+                            construyo identidades visuales con criterio,
+                            con intención y con la certeza de que la coherencia
+                            no es un detalle. Es la diferencia entre algo
+                            que se olvida y algo que se recuerda.
                         </p>
 
                         <p className="sobre-bio-cierre">
-                            Actualmente navegando entre proyectos freelance y el tramo de DAW. 
-                            Busco espacios donde la creatividad sea una decisión técnica y el código, 
-                            una pieza de diseño más.
+                            DAW 25/26. Abierta a oportunidades que merezcan
+                            la evolución. Si tu empresa busca a alguien que
+                            piense en sistemas, diseñe con propósito y codee
+                            con estética — ya me encontraste.
                         </p>
+
                     </div>
                 </div>
             </div>
 
             <Skills />
-        
-            <div className="sobre-estado">
+
+            <div className="sobre-estado animar">
+                <span className="etiqueta">進化 ★ En evolución</span>
+                <span className="sobre-estado-separador" aria-hidden="true" />
                 <span className="etiqueta">DAW 25/26</span>
                 <span className="sobre-estado-separador" aria-hidden="true" />
-                <span className="etiqueta">Open to work</span>
-                <span className="sobre-estado-separador" aria-hidden="true" />
-                <span className="etiqueta">Creative Dev</span>
+                <span className="etiqueta">Abierta a oportunidades</span>
             </div>
+
         </section>
     );
-}
+}

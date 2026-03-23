@@ -9,21 +9,14 @@ import Work     from './pages/Work';
 import SobreMi  from './pages/Sobre-Mi';
 import Contacto from './pages/Contacto';
 
-/* ── Variantes de transición ─────────────────────────
-   Entrada: sube desde abajo con fade
-   Salida:  baja con fade
-   Duración corta — el usuario no espera
-──────────────────────────────────────────────────── */
 const variantes = {
     inicial: { opacity: 0, y: 18 },
     entrar:  { opacity: 1, y: 0,   transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
     salir:   { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
 };
 
-/* ── AnimatedRoutes separado para poder usar useLocation ── */
 function AnimatedRoutes() {
     const location = useLocation();
-
     return (
         <AnimatePresence mode="wait">
             <motion.div

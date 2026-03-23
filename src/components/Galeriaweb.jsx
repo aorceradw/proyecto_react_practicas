@@ -1,57 +1,49 @@
 const PROYECTOS = [
     {
         id: 1,
-        ref: 'WEB_CURR',
-        titulo: 'Portafolio Personal',
-        tecnologias: 'React · Vite · Tailwind (In Progress)',
+        titulo: 'Portfolio Personal',
+        stack: 'React · Vite · Node.js · MySQL',
         año: '2025',
-        src: '/images/image.png',
-        alt: 'Captura del proceso de desarrollo del portafolio',
-        url: '#'
+        img: '/images/image.png',
+        alt: 'Portfolio personal en desarrollo',
     },
     {
         id: 2,
-        ref: 'WEB_DEV',
         titulo: 'Exploración Visual Web',
-        tecnologias: 'React · UI/UX Design',
+        stack: 'React · UI/UX Design',
         año: '2025',
-        src: '/images/image (1).png',
-        alt: 'Captura de pantalla de desarrollo web',
-        url: '#'
+        img: '/images/image (1).png',
+        alt: 'Proyecto de exploración visual',
     },
 ];
 
 export default function GaleriaWeb() {
     return (
-        <div className="galeria-web-container">
-            <div className="grid-web animar">
-                {PROYECTOS.map(proyecto => (
-                    <article key={proyecto.id} className="grid-web-item">
-                        <div className="grid-web-imagen-contenedor">
-                            <img
-                                src={proyecto.src}
-                                alt={proyecto.alt}
-                                className="grid-web-imagen"
-                            />
-                            <div className="grid-web-overlay">
-                                <span className="grid-web-cta">En desarrollo ...</span>
-                            </div>
-                        </div>
+        <div className="galeria-web">
 
-                        <div className="grid-web-meta">
-                            <span className="mosaico-ref">{proyecto.ref}</span>
-                            <span className="grid-web-titulo">{proyecto.titulo}</span>
-                            <span className="grid-web-tecnologias">{proyecto.tecnologias}</span>
-                            <span className="mosaico-año">{proyecto.año}</span>
+            {PROYECTOS.map(proyecto => (
+                <article key={proyecto.id} className="proyecto-web">
+
+                    <div className="proyecto-web-imagen">
+                        <img src={proyecto.img} alt={proyecto.alt} />
+                        <div className="proyecto-web-overlay">
+                            <span>En desarrollo</span>
                         </div>
-                    </article>
-                ))}
-            </div>
-            
-            <div className="web-status-banner animar">
-                <span className="etiqueta">EN PROGRESO DE MÁS</span>
-                <p className="web-status-texto">Próximamente nuevos despliegues y casos de estudio.</p>
-            </div>
+                    </div>
+
+                    <div className="proyecto-web-info">
+                        <div className="proyecto-web-cabecera">
+                            <h3>{proyecto.titulo}</h3>
+                            <span>{proyecto.año}</span>
+                        </div>
+                        <p>{proyecto.stack}</p>
+                    </div>
+
+                </article>
+            ))}
+
+            <p className="galeria-web-aviso">Más proyectos en camino.</p>
+
         </div>
     );
-}
+}

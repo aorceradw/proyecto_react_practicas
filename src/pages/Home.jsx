@@ -14,11 +14,6 @@ export default function Home() {
     return (
         <main>
 
-            {/* Imagen de portada */}
-            <div className="portada">
-                <img src="/images/portfolio.png" alt="Angela Portfolio" />
-            </div>
-
             {/* Hero */}
             <Hero />
 
@@ -38,15 +33,15 @@ export default function Home() {
                     <h2>Servicios</h2>
                 </div>
                 <div className="servicios-grid">
-                    <div className="servicio">
+                    <div className="servicio servicio-especial">
                         <span>01</span>
                         <h3>Desarrollo web</h3>
                         <p>Webs con criterio de marca. Frontend en React, backend en Node. Código que respeta la identidad de la empresa.</p>
                     </div>
-                    <div className="servicio">
+                    <div className="servicio servicio-corporativa">
                         <span>02</span>
                         <h3>Imagen corporativa</h3>
-                        <p>Análisis y construcción de la imagen que proyecta tu marca. Lo que comunicas antes de abrir la boca.</p>
+                        <p>Análisis y construcción de la imagen que proyecta tu marca.</p>
                     </div>
                     <div className="servicio">
                         <span>03</span>

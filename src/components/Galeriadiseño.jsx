@@ -14,6 +14,7 @@ const ELEMENTOS_3D = [
 const CARTELERIA = [
     { id: 8, titulo: 'Poster Design', img: '/images/poster.png' },
     { id: 9, titulo: 'Never Give Up', img: '/images/nevergive.PNG' },
+    { id: 10, titulo: 'Modela', img: '/images/model2.jpg' },
 ];
 
 export default function GaleriaDiseño() {

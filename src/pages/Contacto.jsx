@@ -15,7 +15,7 @@ export default function Contacto() {
 
                         <div className="dato">
                             <span className="etiqueta">Email</span>
-                            <a href="mailto:hola@angela.es">hola@angela.es</a>
+                            <a href="mailto:angelaorcerz@gmail.com">angelaorcerz@angela.es</a>
                         </div>
 
                         <div className="dato">

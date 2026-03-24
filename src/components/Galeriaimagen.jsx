@@ -21,6 +21,8 @@ const REDES = [
 const CARTELES = [
     { id: 9,  titulo: 'Y2K Inspo — Nokia',   img: '/images/nokia.jpg' },
     { id: 10, titulo: 'La Vivienne — Inspo', img: '/images/lavivienne.jpg' },
+        { id: 11, titulo: 'Modela', img: '/images/MARCAS.jpg' },
+
 ];
 
 export default function GaleriaImagen() {

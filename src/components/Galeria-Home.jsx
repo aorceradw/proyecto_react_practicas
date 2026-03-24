@@ -3,27 +3,28 @@ import { Link } from 'react-router-dom';
 const PROYECTOS = [
     {
         id: 1,
-        titulo: 'Portfolio Personal',
-        categoria: 'Desarrollo web',
-        img: '/images/image.png',
+        titulo: 'V4NGVARD1ST4',
+        categoria: 'Diseño gráfico con Adobe Photoshop e Illustrator',
+        img: '/images/model2.jpg',
     },
     {
         id: 2,
-        titulo: 'V&W Identity',
-        categoria: 'Imagen corporativa',
-        img: '/images/DESIGNWAPO.jpg',
+        titulo: 'Creating VW Identities',
+        categoria: 'Imagen corporativa con modelado 3d en Photoshop e Illustrator',
+        img: '/images/vw4.jpg',
     },
     {
         id: 3,
-        titulo: 'Mugler Editorial',
-        categoria: 'Diseño gráfico',
-        img: '/images/revista2.PNG',
-    },
-    {
-        id: 4,
         titulo: 'Brand Ecosystem',
         categoria: 'Branding',
         img: '/images/MARCAS.jpg',
+        
+    },
+    {
+        id: 4,
+        titulo: 'CODE X ART',
+        categoria: 'Desarrollo web en progreso',
+        img: '/images/image.png',
     },
 ];
 
@@ -35,6 +36,8 @@ export default function GaleriaHome() {
                 <span className="etiqueta">Trabajo reciente</span>
                 <h2>Proyectos</h2>
             </div>
+
+            <img src="/images/portfolio.png" className="foto_portfolio" alt="Portfolio" />
 
             <ul className="galeria-home-lista">
                 {PROYECTOS.map(proyecto => (

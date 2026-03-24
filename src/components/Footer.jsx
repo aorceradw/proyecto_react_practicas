@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <footer className="footer">
 
-            <p>© {año} Angela — Granada</p>
+            <p>© {año} Angela · Granada</p>
 
             <ul className="footer-redes">
                 <li>

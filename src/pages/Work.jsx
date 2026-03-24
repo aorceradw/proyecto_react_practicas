@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import GaleriaDiseño from '../components/Galeriadiseno';
+import GaleriaDiseño from '../components/Galeriadiseño';
 import GaleriaWeb    from '../components/Galeriaweb';
 import GaleriaImagen from '../components/Galeriaimagen';
 

@@ -43,7 +43,7 @@ export default function Home() {
                         <h3>Imagen corporativa</h3>
                         <p>Análisis y construcción de la imagen que proyecta tu marca.</p>
                     </div>
-                    <div className="servicio">
+                    <div className="servicio servicio-diseño">
                         <span>03</span>
                         <h3>Diseño gráfico</h3>
                         <p>Identidades visuales, sistemas de marca y diseño editorial con intención y coherencia.</p>
@@ -51,7 +51,12 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Stack */}
+         
+
+            {/* Galería */}
+            <GaleriaHome />
+
+           {/* Stack */}
             <section className="stack">
                 <div className="stack-cabecera">
                     <span className="etiqueta">Lo que uso</span>
@@ -70,9 +75,6 @@ export default function Home() {
                     ))}
                 </div>
             </section>
-
-            {/* Galería */}
-            <GaleriaHome />
 
             {/* Opiniones */}
             <Opiniones />

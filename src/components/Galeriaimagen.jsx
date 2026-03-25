@@ -25,16 +25,33 @@ const CARTELES = [
 
 ];
 
+import { useState } from 'react';
+import ClickImagen from './ClickImagen';
+
 export default function GaleriaImagen() {
+    const [fotoSeleccionada, setFotoSeleccionada] = useState(null);
+
     return (
         <div className="galeria-imagen">
+
+            {fotoSeleccionada && (
+                <ClickImagen 
+                    imagen={fotoSeleccionada} 
+                    onClose={() => setFotoSeleccionada(null)} 
+                />
+            )}
 
             <section className="galeria-seccion">
                 <h2>Logotipos</h2>
                 <div className="galeria-grid">
                     {LOGOTIPOS.map(p => (
                         <figure key={p.id}>
-                            <img src={p.img} alt={p.titulo} />
+                            <img 
+                                src={p.img} 
+                                alt={p.titulo} 
+                                onClick={() => setFotoSeleccionada(p)}
+                                style={{ cursor: 'zoom-in' }}
+                            />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
                     ))}
@@ -47,7 +64,12 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {BRANDING.map(p => (
                         <figure key={p.id}>
-                            <img src={p.img} alt={p.titulo} />
+                            <img 
+                                src={p.img} 
+                                alt={p.titulo} 
+                                onClick={() => setFotoSeleccionada(p)}
+                                style={{ cursor: 'zoom-in' }}
+                            />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
                     ))}
@@ -60,7 +82,12 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {EDITORIAL.map(p => (
                         <figure key={p.id}>
-                            <img src={p.img} alt={p.titulo} />
+                            <img 
+                                src={p.img} 
+                                alt={p.titulo} 
+                                onClick={() => setFotoSeleccionada(p)}
+                                style={{ cursor: 'zoom-in' }}
+                            />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
                     ))}
@@ -72,7 +99,12 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {REDES.map(p => (
                         <figure key={p.id}>
-                            <img src={p.img} alt={p.titulo} />
+                            <img 
+                                src={p.img} 
+                                alt={p.titulo} 
+                                onClick={() => setFotoSeleccionada(p)}
+                                style={{ cursor: 'zoom-in' }}
+                            />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
                     ))}

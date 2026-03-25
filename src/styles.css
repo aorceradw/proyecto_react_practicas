@@ -918,3 +918,102 @@ figure:hover figcaption { color: var(--text); }
     .header nav ul { gap: .8rem; }
     .stack-grid    { grid-template-columns: 1fr; }
 }
+
+
+/* click imagen */
+.click-imagen-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: aparecer .3s var(--ease);
+    overflow: hidden;
+}
+
+.click-imagen-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://i.pinimg.com/originals/55/a5/23/55a523855425a0f490ac99fd64f45ab9.gif');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+[data-tema="claro"] .click-imagen-overlay {
+    background: linear-gradient(135deg, rgba(255, 250, 240, 0.85), rgba(232, 196, 188, 0.45));
+}
+
+[data-tema="claro"] .click-imagen-overlay::before {
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+}
+
+.click-imagen-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: subir .5s var(--ease);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.click-imagen-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    background: var(--bg);
+    pointer-events: none; /* Let parent handle mouse events */
+}
+
+.click-imagen-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.2) 0%, transparent 60%);
+    z-index: 5;
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.click-imagen-content:hover .click-imagen-glare {
+    opacity: 1;
+}
+
+.click-imagen-caption {
+    font-family: var(--pixel);
+    font-size: 1.2rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.click-imagen-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 3rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity .2s;
+    z-index: 1010;
+}
+.click-imagen-close:hover { opacity: 1; }

@@ -41,16 +41,19 @@ export default function ClickImagen({ imagen, onClose }) {
     return (
         <div className="click-imagen-overlay" onClick={onClose}>
             <button className="click-imagen-close" onClick={onClose}>&times;</button>
-            <div 
-                className="click-imagen-content" 
-                onClick={(e) => e.stopPropagation()}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                ref={cardRef}
-                style={style}
-            >
-                <img src={imagen.img} alt={imagen.titulo} className="click-imagen-img" />
-                <div className="click-imagen-glare"></div>
+            <div className="click-imagen-wrapper">
+                <div 
+                    className="click-imagen-content" 
+                    onClick={(e) => e.stopPropagation()}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    ref={cardRef}
+                    style={style}
+                >
+                    <img src={imagen.img} alt={imagen.titulo} className="click-imagen-img" />
+                    <div className="click-imagen-glare"></div>
+                    <div className="click-imagen-sparkles"></div>
+                </div>
                 <p className="click-imagen-caption">{imagen.titulo}</p>
             </div>
         </div>

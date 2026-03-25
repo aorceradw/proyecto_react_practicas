@@ -22,10 +22,10 @@ export default function ToggleTema() {
             aria-label={oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
         >
             <span className="toggle-tema-icono">
-                {oscuro ? '○' : '●'}
+                {oscuro ? '☆' : '★'}
             </span>
             <span className="toggle-tema-texto">
-                {oscuro ? 'LUZ' : 'SOMBRA'}
+                {oscuro ? 'MODO OSCURO' : 'MODO CLARO'}
             </span>
         </button>
     );

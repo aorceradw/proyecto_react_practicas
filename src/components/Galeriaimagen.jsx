@@ -117,7 +117,12 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {CARTELES.map(p => (
                         <figure key={p.id}>
-                            <img src={p.img} alt={p.titulo} />
+                            <img 
+                                src={p.img} 
+                                alt={p.titulo} 
+                                onClick={() => setFotoSeleccionada(p)}
+                                style={{ cursor: 'zoom-in' }}
+                            />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
                     ))}

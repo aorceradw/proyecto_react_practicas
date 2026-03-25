@@ -8,21 +8,21 @@ export default function ClickImagen({ imagen, onClose }) {
 
     const handleMouseMove = (e) => {
         if (!cardRef.current) return;
-        
+
         const card = cardRef.current;
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
         const percentX = (x / rect.width) * 100;
         const percentY = (y / rect.height) * 100;
-        
-        const rotateX = ((y - centerY) / centerY) * -15; 
+
+        const rotateX = ((y - centerY) / centerY) * -15;
         const rotateY = ((x - centerX) / centerX) * 15;
-        
+
         setStyle({
             transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`,
             transition: 'none',
@@ -42,8 +42,8 @@ export default function ClickImagen({ imagen, onClose }) {
         <div className="click-imagen-overlay" onClick={onClose}>
             <button className="click-imagen-close" onClick={onClose}>&times;</button>
             <div className="click-imagen-wrapper">
-                <div 
-                    className="click-imagen-content" 
+                <div
+                    className="click-imagen-content"
                     onClick={(e) => e.stopPropagation()}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}

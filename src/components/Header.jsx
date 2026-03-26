@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../assets/images/A de angela2.png';
 import ToggleTema from './ModoClaroOscuro';
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
         <header className="header">
 
             <Link to="/" className="logo">
-                <img src="/images/A de angela2.png" alt="Angela" />
+                <img src={logo} alt="Angela" />
                 <span>ANGELA</span>
             </Link>
 

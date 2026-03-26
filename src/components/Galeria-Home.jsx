@@ -1,30 +1,31 @@
 import { Link } from 'react-router-dom';
+import portfolioImg from '../assets/images/portfolio.png';
 
 const PROYECTOS = [
     {
         id: 1,
         titulo: 'V4NGVARD1ST4',
         categoria: 'Diseño gráfico con Adobe Photoshop e Illustrator',
-        img: '/images/model2.jpg',
+        img: new URL('../assets/images/model2.webp', import.meta.url).href,
     },
     {
         id: 2,
         titulo: 'Creating VW Identities',
         categoria: 'Imagen corporativa con modelado 3d en Photoshop e Illustrator',
-        img: '/images/vw4.jpg',
+        img: new URL('../assets/images/vw4.webp', import.meta.url).href,
     },
     {
         id: 3,
         titulo: 'Brand Ecosystem',
         categoria: 'Branding',
-        img: '/images/MARCAS.jpg',
+        img: new URL('../assets/images/MARCAS.webp', import.meta.url).href,
         
     },
     {
         id: 4,
         titulo: 'CODE X ART',
         categoria: 'Desarrollo web en progreso',
-        img: '/images/image.png',
+        img: new URL('../assets/images/image.png', import.meta.url).href,
     },
 ];
 
@@ -37,7 +38,7 @@ export default function GaleriaHome() {
                 <h2>Proyectos</h2>
             </div>
 
-            <img src="/images/portfolio.png" className="foto_portfolio" alt="Portfolio" />
+            <img src={portfolioImg} className="foto_portfolio" alt="Portfolio" />
 
             <ul className="galeria-home-lista">
                 {PROYECTOS.map(proyecto => (

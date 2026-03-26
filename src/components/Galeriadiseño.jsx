@@ -1,20 +1,20 @@
 const SERIES_VW = [
-    { id: 1, titulo: 'V&W Identity',  img: '/images/DESIGNWAPO.jpg' },
-    { id: 2, titulo: 'V&W Series 04', img: '/images/vw4.jpg' },
-    { id: 3, titulo: 'V&W Series 03', img: '/images/vw3.jpg' },
-    { id: 4, titulo: 'V&W Series 01', img: '/images/vw1.jpg' },
+    { id: 1, titulo: 'V&W Identity',  img: new URL('../assets/images/DESIGNWAPO.webp', import.meta.url).href },
+    { id: 2, titulo: 'V&W Series 04', img: new URL('../assets/images/vw4.webp', import.meta.url).href },
+    { id: 3, titulo: 'V&W Series 03', img: new URL('../assets/images/vw3.webp', import.meta.url).href },
+    { id: 4, titulo: 'V&W Series 01', img: new URL('../assets/images/vw1.webp', import.meta.url).href },
 ];
 
 const ELEMENTOS_3D = [
-    { id: 5, titulo: 'Logotipo Corporativo', img: '/images/LOGO.png' },
-    { id: 6, titulo: 'Recurso Gráfico', img: '/images/recurso.png' },
-    { id: 7, titulo: 'Star Element',    img: '/images/star.png' },
+    { id: 5, titulo: 'Logotipo Corporativo', img: new URL('../assets/images/LOGO.png', import.meta.url).href },
+    { id: 6, titulo: 'Recurso Gráfico', img: new URL('../assets/images/recurso.webp', import.meta.url).href },
+    { id: 7, titulo: 'Star Element',    img: new URL('../assets/images/star.webp', import.meta.url).href },
 ];
 
 const CARTELERIA = [
-    { id: 8, titulo: 'Poster Design', img: '/images/poster.png' },
-    { id: 9, titulo: 'Never Give Up', img: '/images/nevergive.PNG' },
-    { id: 10, titulo: 'Modela', img: '/images/model2.jpg' },
+    { id: 8, titulo: 'Poster Design', img: new URL('../assets/images/poster.png', import.meta.url).href },
+    { id: 9, titulo: 'Never Give Up', img: new URL('../assets/images/nevergive.webp', import.meta.url).href },
+    { id: 10, titulo: 'Modela', img: new URL('../assets/images/model2.webp', import.meta.url).href },
 ];
 
 import { useState } from 'react';

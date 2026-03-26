@@ -1,3 +1,4 @@
+import angyImg from '../assets/images/a de angy.png';
 import Skills from '../components/Skills';
 
 export default function SobreMi() {
@@ -13,7 +14,7 @@ export default function SobreMi() {
             <div className="sobre-cuerpo">
 
                 <div className="sobre-foto">
-                    <img src="/images/a de angy.png" alt="Ángela" />
+                    <img src={angyImg} alt="Ángela" />
                 </div>
 
                 <div className="sobre-texto">

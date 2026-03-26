@@ -4,7 +4,7 @@ const PROYECTOS = [
         titulo: 'Portfolio Personal',
         stack: 'React · Vite · Node.js · MySQL',
         año: '2025',
-        img: '/images/image.png',
+        img: new URL('../assets/images/image.png', import.meta.url).href,
         alt: 'Portfolio personal en desarrollo',
     },
     {
@@ -12,7 +12,7 @@ const PROYECTOS = [
         titulo: 'Exploración Visual Web',
         stack: 'React · UI/UX Design',
         año: '2025',
-        img: '/images/image (1).png',
+        img: new URL('../assets/images/image (1).png', import.meta.url).href,
         alt: 'Proyecto de exploración visual',
     },
 ];

@@ -1,28 +1,27 @@
 const LOGOTIPOS = [
-    { id: 1, titulo: 'Logotipo Corporativo', img: '/images/LOGO.png' },
+    { id: 1, titulo: 'Logotipo Corporativo', img: new URL('../assets/images/LOGO.png', import.meta.url).href },
 ];
 
 const BRANDING = [
-    { id: 3, titulo: 'Puf Shirt Design', img: '/images/pufshirt.png' },
-    { id: 4, titulo: 'Tote Bag Dark', img: '/images/totedarkpuf.png' },
-    { id: 5, titulo: 'Tote Bag Light', img: '/images/totepuf.png' },
-    { id: 2, titulo: 'Identidad Puf', img: '/images/logopuf.png' },
+    { id: 3, titulo: 'Puf Shirt Design', img: new URL('../assets/images/pufshirt.png', import.meta.url).href },
+    { id: 4, titulo: 'Tote Bag Dark', img: new URL('../assets/images/totedarkpuf.png', import.meta.url).href },
+    { id: 5, titulo: 'Tote Bag Light', img: new URL('../assets/images/totepuf.png', import.meta.url).href },
+    { id: 2, titulo: 'Identidad Puf', img: new URL('../assets/images/logopuf.png', import.meta.url).href },
 ];
 
 const EDITORIAL = [
-    { id: 6, titulo: 'Mugler Editorial 01', img: '/images/revista1.PNG' },
-    { id: 7, titulo: 'Mugler Editorial 02', img: '/images/revista2.PNG' },
+    { id: 6, titulo: 'Mugler Editorial 01', img: new URL('../assets/images/revista1.webp', import.meta.url).href },
+    { id: 7, titulo: 'Mugler Editorial 02', img: new URL('../assets/images/revista2.webp', import.meta.url).href },
 ];
 
 const REDES = [
-    { id: 8, titulo: 'Post Redes Sociales', img: '/images/redessociales.jpg' },
+    { id: 8, titulo: 'Post Redes Sociales', img: new URL('../assets/images/redessociales.jpg', import.meta.url).href },
 ];
 
 const CARTELES = [
-    { id: 9, titulo: 'Y2K Inspo — Nokia', img: '/images/nokia.jpg' },
-    { id: 10, titulo: 'La Vivienne — Inspo', img: '/images/lavivienne.jpg' },
-    { id: 11, titulo: 'Modela', img: '/images/MARCAS.jpg' },
-
+    { id: 9, titulo: 'Y2K Inspo — Nokia', img: new URL('../assets/images/nokia.webp', import.meta.url).href },
+    { id: 10, titulo: 'La Vivienne — Inspo', img: new URL('../assets/images/lavivienne.webp', import.meta.url).href },
+    { id: 11, titulo: 'Modela', img: new URL('../assets/images/MARCAS.webp', import.meta.url).href },
 ];
 
 import { useState } from 'react';

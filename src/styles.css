@@ -103,6 +103,31 @@ blockquote { font: 400 clamp(1.1rem, 2vw, 1.6rem)/1.45 var(--display); font-styl
 .header nav a:hover { color: var(--text); }
 .header nav a:hover::after { width: 100%; }
 
+.header-derecha { display: flex; align-items: center; gap: 1rem; z-index: 210; }
+
+.menu-hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 210;
+}
+
+.menu-hamburguesa span {
+    width: 2rem;
+    height: 0.15rem;
+    background: var(--text);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
 .toggle-tema { background: transparent; border: 1px solid var(--border); display: flex; align-items: center; gap: .6rem; padding: .4rem .9rem; transition: border-color .2s, color .2s; }
 .toggle-tema:hover { border-color: var(--border-h); color: var(--rose); }
 .toggle-tema-icono { font-size: .85rem; }
@@ -606,8 +631,8 @@ figure:hover figcaption { color: var(--text); }
 .click-imagen-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.95); backdrop-filter: blur(20px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 2rem; animation: aparecer .3s var(--ease); overflow: hidden; }
 [data-tema="claro"] .click-imagen-overlay { background: linear-gradient(135deg, rgba(255,250,240,.85), rgba(232,196,188,.45)); }
 .click-imagen-wrapper { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-.click-imagen-content { position: relative; max-width: 90vw; max-height: 85vh; animation: aparecer .6s var(--ease) both; transform-style: preserve-3d; }
-.click-imagen-img { max-width: 100%; max-height: 80vh; object-fit: contain; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); }
+.click-imagen-content { position: relative; max-width: 90vw; max-height: 85vh; animation: aparecer .6s var(--ease) both; transform-style: preserve-3d; user-select: none; Touch-action: none; }
+.click-imagen-img { max-width: 100%; max-height: 80vh; object-fit: contain; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .click-imagen-glare { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.2) 0%, transparent 60%); z-index: 5; mix-blend-mode: overlay; opacity: 0; transition: opacity .3s; }
 .click-imagen-content:hover .click-imagen-glare { opacity: 1; }
 .click-imagen-caption { font: 1.2rem var(--pixel); letter-spacing: .25em; text-transform: uppercase; color: var(--text); text-shadow: 0 2px 10px rgba(0,0,0,.8); opacity: .8; }
@@ -619,7 +644,42 @@ figure:hover figcaption { color: var(--text); }
     .sobre-cuerpo, .contacto-layout { grid-template-columns: 1fr; gap: 3rem; }
 }
 @media (max-width: 768px) {
-    .header nav ul { gap: 1.2rem; }
+    .header nav ul { display: none; }
+    .nav-principal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 205;
+        transform: translateX(100%);
+        transition: transform 0.4s var(--ease);
+        backdrop-filter: blur(20px);
+    }
+    .nav-principal.visible {
+        transform: translateX(0);
+    }
+    .nav-principal ul {
+        display: flex !important;
+        flex-direction: column;
+        gap: 2.5rem;
+        text-align: center;
+    }
+    .nav-principal a {
+        font-size: 1.5rem !important;
+    }
+    .menu-hamburguesa {
+        display: flex;
+    }
+    .menu-hamburguesa.abierto span:first-child { transform: rotate(45deg); }
+    .menu-hamburguesa.abierto span:nth-child(2) { opacity: 0; transform: translateX(20px); }
+    .menu-hamburguesa.abierto span:last-child { transform: rotate(-45deg); }
+
     .header::after, .toggle-tema-texto { display: none; }
     .toggle-tema { padding: .4rem .7rem; }
     .footer { grid-template-columns: 1fr; padding: 3rem clamp(1.5rem, 4vw, 3rem) 2.5rem; gap: 1.5rem; }

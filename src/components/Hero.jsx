@@ -12,7 +12,8 @@ export default function Hero() {
             </div>
 
             <p className="hero-desc">
-                Evolución. El salto que no tiene vuelta atrás.
+                Evolucionar no es cambiar de dirección,<br />
+                es dejar de mirar atrás.
             </p>
 
             <Link to="/trabajos" className="hero-cta">
@@ -21,7 +22,7 @@ export default function Hero() {
 
             <div className="hero-scroll">
                 <div className="hero-scroll-line" />
-                <span>scroll</span>
+                <span>Este portfolio representa mi evolución y mi aspiración a que quien lo vea tenga ganas de evolucionar más conmigo.</span>
             </div>
         </section>
     );

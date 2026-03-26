@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const DIRECTORIO_ENTRADA = './src/assets/images';
-const DIRECTORIO_SALIDA = './src/assets/images/optimized'; // Se guardan aquí temporalmente para evitar problemas de sobrescritura
+const DIRECTORIO_SALIDA = './src/assets/images/optimized_temp';
 
 async function optimizarImagenes() {
   try {
@@ -13,10 +13,12 @@ async function optimizarImagenes() {
     const archivos = await fs.readdir(DIRECTORIO_ENTRADA);
     const archivosImagen = archivos.filter(archivo => {
       const ext = path.extname(archivo).toLowerCase();
+      // Ignorar la propia carpeta de salida si está dentro
       return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
     });
 
-    console.log(`Se han encontrado ${archivosImagen.length} imágenes para optimizar.`);
+    console.log(`\n--- OPTIMIZACIÓN AGRESIVA ---\n`);
+    console.log(`Se han encontrado ${archivosImagen.length} imágenes para procesar.`);
 
     for (const archivo of archivosImagen) {
       const rutaEntrada = path.join(DIRECTORIO_ENTRADA, archivo);
@@ -29,18 +31,18 @@ async function optimizarImagenes() {
 
       let pipeline = imagen;
 
-      // Redimensionar si es muy grande (ancho máximo 1920)
-      if (metadatos.width > 1920) {
-        pipeline = pipeline.resize(1920);
+      // Redimensionar a 1280px de ancho máximo para mayor velocidad
+      if (metadatos.width > 1280) {
+        pipeline = pipeline.resize(1280);
       }
 
-      // Ajustes de optimización según el formato
+      // Ajustes de optimización agresiva (Calidad 60)
       if (metadatos.format === 'webp') {
-        pipeline = pipeline.webp({ quality: 80 });
+        pipeline = pipeline.webp({ quality: 60, effort: 6 });
       } else if (metadatos.format === 'png') {
-        pipeline = pipeline.png({ compressionLevel: 9 });
+        pipeline = pipeline.png({ compressionLevel: 9, palette: true });
       } else if (['jpg', 'jpeg'].includes(metadatos.format)) {
-        pipeline = pipeline.jpeg({ quality: 80 });
+        pipeline = pipeline.jpeg({ quality: 60, mozjpeg: true });
       }
 
       await pipeline.toFile(rutaSalida);
@@ -49,11 +51,10 @@ async function optimizarImagenes() {
       const tamanoNuevo = (await fs.stat(rutaSalida)).size;
       const reduccion = ((tamanoAntiguo - tamanoNuevo) / tamanoAntiguo * 100).toFixed(2);
       
-      console.log(`  Listo: ${archivo} (${(tamanoNuevo / 1024 / 1024).toFixed(2)} MB, -${reduccion}%)`);
+      console.log(`  Listo: ${archivo} (${(tamanoNuevo / 1024).toFixed(0)} KB, Reducción: ${reduccion}%)`);
     }
 
-    console.log('\n¡Optimización completada! Las imágenes optimizadas están en src/assets/images/optimized');
-    console.log('Ahora puedes revisarlas y reemplazar las originales si estás conforme.');
+    console.log('\n¡Optimización completada!');
 
   } catch (error) {
     console.error('Error al optimizar las imágenes:', error);

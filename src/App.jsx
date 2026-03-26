@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import Header   from './components/Header';
 import Footer   from './components/Footer';
+import SubirArriba from './components/SubirArriba';
 
 import Home     from './pages/Home';
 import Work     from './pages/Work';
@@ -45,6 +46,7 @@ export default function App() {
                 <AnimatedRoutes />
             </div>
             <Footer />
+            <SubirArriba />
         </BrowserRouter>
     );
 }

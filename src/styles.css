@@ -632,3 +632,41 @@ figure:hover figcaption { color: var(--text); }
     .header nav ul { gap: .8rem; }
     .stack-grid { grid-template-columns: 1fr; }
 }
+
+/* Scroll To Top - Subir Arriba */
+.subir-arriba {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    z-index: 1000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border: 1px solid var(--border-h);
+    color: var(--rose);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s var(--ease);
+}
+
+.subir-arriba-icono {
+    font: 700 1.5rem var(--pixel);
+    line-height: 1;
+    z-index: 2;
+}
+
+.subir-arriba:hover {
+    border-color: var(--rose);
+}
+
+@media (max-width: 768px) {
+    .subir-arriba {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 45px;
+        height: 45px;
+    }
+}

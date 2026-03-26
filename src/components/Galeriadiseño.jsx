@@ -6,8 +6,9 @@ const SERIES_VW = [
 ];
 
 const ELEMENTOS_3D = [
-    { id: 6, titulo: 'Star Element',    img: '/images/star.png' },
-    { id: 7, titulo: 'Recurso Gráfico', img: '/images/recurso.png' },
+    { id: 5, titulo: 'Logotipo Corporativo', img: '/images/LOGO.png' },
+    { id: 6, titulo: 'Recurso Gráfico', img: '/images/recurso.png' },
+    { id: 7, titulo: 'Star Element',    img: '/images/star.png' },
 ];
 
 const CARTELERIA = [
@@ -42,7 +43,6 @@ export default function GaleriaDiseño() {
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}
-                                style={{ cursor: 'zoom-in' }}
                             />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
@@ -55,12 +55,12 @@ export default function GaleriaDiseño() {
                 <p>Recursos tridimensionales para aportar profundidad visual.</p>
                 <div className="galeria-grid">
                     {ELEMENTOS_3D.map(p => (
-                        <figure key={p.id}>
+                        <figure key={p.id} className={p.img.includes('LOGO') || p.img.includes('star') || p.img.includes('logopuf') ? 'no-border' : ''}>
                             <img 
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}
-                                style={{ cursor: 'zoom-in' }}
+                                className={p.img.includes('LOGO') || p.img.includes('star') ? 'img-contain' : ''}
                             />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>
@@ -78,7 +78,6 @@ export default function GaleriaDiseño() {
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}
-                                style={{ cursor: 'zoom-in' }}
                             />
                             <figcaption>{p.titulo}</figcaption>
                         </figure>

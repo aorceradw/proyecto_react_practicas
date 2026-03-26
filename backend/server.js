@@ -1,60 +1,69 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const path = require('path');
-const dotenv = require('dotenv');
+import express from 'express';
+import mysql from 'mysql2';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-// Esto fuerza a buscar el .env en la misma carpeta que este archivo
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-// Verificación rápida en consola al arrancar
-console.log('--- Configuración ---');
-console.log('Email:', process.env.EMAIL_USER || 'No cargado');
-console.log('Pass:', process.env.EMAIL_PASS ? 'Cargada' : 'No cargada');
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
+// Conexión configurada con los datos de .env
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
-app.post('/api/contactos', async (req, res) => {
-    const { nombre, email, empresa, tipo_solicitud, mensaje } = req.body;
-
-    const mailOptions = {
-        from: email,
-        to: process.env.EMAIL_USER,
-        subject: `Contacto de ${nombre} - ${tipo_solicitud}`,
-        html: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-                <h2>Nuevo mensaje del formulario</h2>
-                <p><strong>Nombre:</strong> ${nombre}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Empresa:</strong> ${empresa || 'N/A'}</p>
-                <p><strong>Asunto:</strong> ${tipo_solicitud}</p>
-                <hr>
-                <p><strong>Mensaje:</strong></p>
-                <p>${mensaje}</p>
-            </div>
-        `
-    };
-
-    try {
-        await transporter.sendMail(mailOptions);
-        console.log('Correo enviado correctamente');
-        res.status(200).json({ enviado: true });
-    } catch (error) {
-        console.error('Error en Nodemailer:', error.message);
-        res.status(500).json({ error: 'Error al enviar el correo' });
+db.connect((err) => {
+    if (err) {
+        console.error('Error: No se pudo conectar a la DB. ¿Está XAMPP encendido?', err.message);
+        return;
     }
+    console.log('¡Conectado con éxito a portfolio_db!');
+});
+
+// RUTA PARA CONTACTOS (POST)
+app.post('/api/contactos', (req, res) => {
+    const { nombre, email, empresa, tipo_solicitud, mensaje } = req.body;
+    
+    const query = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
+    
+    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, result) => {
+        if (err) {
+            console.error('Error al insertar contacto:', err);
+            return res.status(500).json({ error: 'Error al guardar en la base de datos' });
+        }
+        res.status(200).send('Mensaje recibido y guardado');
+    });
+});
+
+// RUTA PARA OPINIONES ( Para leerlas)
+app.get('/api/opiniones', (req, res) => {
+    const query = 'SELECT * FROM opiniones ORDER BY created_at DESC';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+// RUTA PARA OPINIONES
+app.post('/api/opiniones', (req, res) => {
+    const { autor, rol, cita } = req.body;
+    const query = 'INSERT INTO opiniones (autor, rol, cita) VALUES (?, ?, ?)';
+    
+    db.query(query, [autor, rol, cita], (err, result) => {
+        if (err) {
+            console.error('Error al insertar opinión:', err);
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(200).send('Opinión guardada correctamente');
+    });
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`funcionando en http://localhost:${PORT}`);
+});

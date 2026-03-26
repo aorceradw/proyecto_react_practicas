@@ -34,50 +34,57 @@ export default function FormularioContacto() {
     }
 
     return (
-        <form id="formulario" onSubmit={enviarMensaje}>
+        <div className="formulario cyber-panel">
+            <div className="scanline"></div>
+            <div className="form-content-inner">
+                <form id="formulario" onSubmit={enviarMensaje} className="form-shinka">
 
-            <div className="formulario-doble">
-                <div className="campo">
-                    <label htmlFor="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" value={formulario.nombre} onChange={manejarCambio} placeholder="Tu nombre" required />
-                </div>
-                <div className="campo">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" name="email" value={formulario.email} onChange={manejarCambio} placeholder="hola@ejemplo.com" required />
-                </div>
+                    <div className="form-fila-shinka">
+                        <div className="campo">
+                            <label htmlFor="nombre"><span className="slash">/</span>Nombre</label>
+                            <input type="text" id="nombre" name="nombre" value={formulario.nombre} onChange={manejarCambio} placeholder="Tu nombre" required />
+                        </div>
+                        <div className="campo">
+                            <label htmlFor="email"><span className="slash">/</span>Email</label>
+                            <input type="email" id="email" name="email" value={formulario.email} onChange={manejarCambio} placeholder="hola@ejemplo.com" required />
+                        </div>
+                    </div>
+
+                    <div className="form-fila-shinka">
+                        <div className="campo">
+                            <label htmlFor="empresa"><span className="slash">/</span>Empresa o marca</label>
+                            <input type="text" id="empresa" name="empresa" value={formulario.empresa} onChange={manejarCambio} placeholder="Opcional" />
+                        </div>
+                        <div className="campo">
+                            <label htmlFor="tipo_solicitud"><span className="slash">/</span>Tipo de solicitud</label>
+                            <select id="tipo_solicitud" name="tipo_solicitud" value={formulario.tipo_solicitud} onChange={manejarCambio} required>
+                                <option value="" disabled>Selecciona una opción</option>
+                                <option value="web">Desarrollo web</option>
+                                <option value="imagen">Imagen corporativa</option>
+                                <option value="branding">Diseño de marca</option>
+                                <option value="grafico">Diseño gráfico</option>
+                                <option value="asesoria">Asesoría de imagen</option>
+                                <option value="otro">Otra cosa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="campo">
+                        <label htmlFor="mensaje"><span className="slash">/</span>Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" value={formulario.mensaje} onChange={manejarCambio} placeholder="Cuéntame sobre tu proyecto..." required />
+                    </div>
+
+                    <div className="form-footer-shinka">
+                        <button type="submit" disabled={estado === 'enviando'} className="btn-shinka">
+                            {estado === 'enviando' ? 'Enviando...' : 'Enviar mensaje'}
+                        </button>
+                        
+                        {estado === 'ok'    && <p className="mensaje-ok">Mensaje enviado. Te respondo pronto.</p>}
+                        {estado === 'error' && <p className="mensaje-error">Algo falló. Inténtalo de nuevo.</p>}
+                    </div>
+
+                </form>
             </div>
-
-            <div className="formulario-doble">
-                <div className="campo">
-                    <label htmlFor="empresa">Empresa o marca</label>
-                    <input type="text" id="empresa" name="empresa" value={formulario.empresa} onChange={manejarCambio} placeholder="Opcional" />
-                </div>
-                <div className="campo">
-                    <label htmlFor="tipo_solicitud">En qué puedo ayudarte</label>
-                    <select id="tipo_solicitud" name="tipo_solicitud" value={formulario.tipo_solicitud} onChange={manejarCambio} required>
-                        <option value="" disabled>Selecciona una opción</option>
-                        <option value="web">Desarrollo web</option>
-                        <option value="imagen">Imagen corporativa</option>
-                        <option value="branding">Diseño de marca</option>
-                        <option value="grafico">Diseño gráfico</option>
-                        <option value="asesoria">Asesoría de imagen</option>
-                        <option value="otro">Otra cosa</option>
-                    </select>
-                </div>
-            </div>
-
-            <div className="campo">
-                <label htmlFor="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" value={formulario.mensaje} onChange={manejarCambio} placeholder="Cuéntame sobre tu proyecto..." required />
-            </div>
-
-            <button type="submit" disabled={estado === 'enviando'}>
-                {estado === 'enviando' ? 'Enviando...' : 'Enviar mensaje'}
-            </button>
-
-            {estado === 'ok'    && <p className="opiniones-ok">Mensaje enviado. Te respondo pronto.</p>}
-            {estado === 'error' && <p className="opiniones-error">Algo falló. Inténtalo de nuevo.</p>}
-
-        </form>
+        </div>
     );
 }

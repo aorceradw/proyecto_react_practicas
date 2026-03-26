@@ -35,18 +35,24 @@ export default function Home() {
                 <div className="servicios-grid">
                     <div className="servicio servicio-especial">
                         <span>01</span>
-                        <h3>Desarrollo web</h3>
-                        <p>Webs con criterio de marca. Frontend en React, backend en Node. Código que respeta la identidad de la empresa.</p>
+                        <div>
+                            <h3>Desarrollo web</h3>
+                            <p>Webs con criterio de marca. Frontend en React, backend en Node. Código que respeta la identidad de la empresa.</p>
+                        </div>
                     </div>
                     <div className="servicio servicio-corporativa">
                         <span>02</span>
-                        <h3>Imagen corporativa</h3>
-                        <p>Análisis y construcción de la imagen que proyecta tu marca.</p>
+                        <div>
+                            <h3>Imagen corporativa</h3>
+                            <p>Análisis y construcción de la imagen que proyecta tu marca.</p>
+                        </div>
                     </div>
                     <div className="servicio servicio-diseño">
                         <span>03</span>
-                        <h3>Diseño gráfico</h3>
-                        <p>Identidades visuales, sistemas de marca y diseño editorial con intención y coherencia.</p>
+                        <div>
+                            <h3>Diseño gráfico</h3>
+                            <p>Identidades visuales, sistemas de marca y diseño editorial con intención y coherencia.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -82,7 +88,7 @@ export default function Home() {
             {/* CTA */}
             <section className="cta">
                 <span className="etiqueta">¿Siguiente paso?</span>
-                <h2>Hablemos</h2>
+                <h2>¿Trabajamos junt@s?</h2>
                 <p>Si tienes un proyecto con personalidad, me interesa conocerlo.</p>
                 <Link to="/contacto">Contactar</Link>
             </section>

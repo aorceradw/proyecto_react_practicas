@@ -4,9 +4,9 @@ const API = import.meta.env.VITE_API_URL;
 
 export default function Opiniones() {
     const [opiniones, setOpiniones] = useState([]);
-    const [form, setForm]           = useState({ autor: '', rol: '', cita: '' });
-    const [estado, setEstado]       = useState('idle');
-    const [cargando, setCargando]   = useState(true);
+    const [form, setForm] = useState({ autor: '', rol: '', cita: '' });
+    const [estado, setEstado] = useState('idle');
+    const [cargando, setCargando] = useState(true);
 
     const cargarOpiniones = async () => {
         try {
@@ -65,7 +65,8 @@ export default function Opiniones() {
                 )}
 
                 {opiniones.map(opinion => (
-                    <article key={opinion.id} className="opinion">
+                    <article key={opinion.id} className="opinion cyber-panel">
+                        <div className="scanline"></div>
                         <blockquote>"{opinion.cita}"</blockquote>
                         <div className="opinion-autor">
                             <span>{opinion.autor}</span>
@@ -75,33 +76,38 @@ export default function Opiniones() {
                 ))}
             </div>
 
-            <div className="opiniones-form-wrapper">
-                <span className="etiqueta">Deja tu opinión</span>
-                <h3>¿Trabajamos junt@s?</h3>
+            <div className="opiniones-form-seccion cyber-panel">
+                <div className="scanline"></div>
+                <div className="form-content-inner">
+                    <span className="etiqueta">Colaboración</span>
+                    <h3>Cuenta tu experiencia</h3>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="campo">
-                        <label htmlFor="autor">Nombre</label>
-                        <input type="text" id="autor" name="autor" value={form.autor} onChange={handleChange} placeholder="Tu nombre" required />
-                    </div>
+                    <form onSubmit={handleSubmit} className="form-shinka">
+                        <div className="campo">
+                            <label htmlFor="autor"><span className="slash">/</span>Nombre</label>
+                            <input type="text" id="autor" name="autor" value={form.autor} onChange={handleChange} placeholder="Tu nombre" required />
+                        </div>
 
-                    <div className="campo">
-                        <label htmlFor="rol">Cargo o empresa</label>
-                        <input type="text" id="rol" name="rol" value={form.rol} onChange={handleChange} placeholder="CEO — Empresa" />
-                    </div>
+                        <div className="campo">
+                            <label htmlFor="rol"><span className="slash">/</span>Cargo — Empresa</label>
+                            <input type="text" id="rol" name="rol" value={form.rol} onChange={handleChange} placeholder="Tu cargo o empresa" />
+                        </div>
 
-                    <div className="campo">
-                        <label htmlFor="cita">Tu opinión</label>
-                        <textarea id="cita" name="cita" value={form.cita} onChange={handleChange} placeholder="Cuéntame tu experiencia..." required />
-                    </div>
+                        <div className="campo">
+                            <label htmlFor="cita"><span className="slash">/</span>Opinión</label>
+                            <textarea id="cita" name="cita" value={form.cita} onChange={handleChange} placeholder="Cuéntame tu experiencia..." required />
+                        </div>
 
-                    <button type="submit" disabled={estado === 'enviando'}>
-                        {estado === 'enviando' ? 'Enviando...' : 'Enviar'}
-                    </button>
-
-                    {estado === 'ok'    && <p className="mensaje-ok">Opinión enviada. Gracias.</p>}
-                    {estado === 'error' && <p className="mensaje-error">Algo falló. Inténtalo de nuevo.</p>}
-                </form>
+                        <div className="form-footer-shinka">
+                            <button type="submit" disabled={estado === 'enviando'} className="btn-shinka">
+                                {estado === 'enviando' ? 'Enviando...' : 'Enviar opinión'}
+                            </button>
+                            
+                            {estado === 'ok' && <p className="mensaje-ok">Opinión recibida. ¡Gracias!</p>}
+                            {estado === 'error' && <p className="mensaje-error">Error al enviar. Inténtalo de nuevo.</p>}
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </section>

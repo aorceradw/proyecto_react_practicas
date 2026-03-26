@@ -52,7 +52,6 @@ export default function ClickImagen({ imagen, onClose }) {
                 >
                     <img src={imagen.img} alt={imagen.titulo} className="click-imagen-img" />
                     <div className="click-imagen-glare"></div>
-                    <div className="click-imagen-sparkles"></div>
                 </div>
                 <p className="click-imagen-caption">{imagen.titulo}</p>
             </div>

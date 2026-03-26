@@ -9,7 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuración de la conexión a MySQL
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT || 3306,
@@ -18,28 +17,47 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-// Conectar a la base de datos
 db.connect((err) => {
     if (err) {
         console.error('Error conectando a MySQL:', err);
         return;
     }
-    console.log('Conectado a la base de datos MySQL (XAMPP)');
+    console.log('Conectado a la base de datos MySQL');
 });
 
-// Ruta para recibir los datos del formulario
-app.post('/api/contacto', (req, res) => {
+// --- RUTAS DE CONTACTO ---
+app.post('/api/contactos', (req, res) => {
     const { nombre, email, empresa, tipo_solicitud, mensaje } = req.body;
-    
     const query = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
     
     db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, result) => {
         if (err) {
-            console.error('Error al insertar datos:', err);
-            res.status(500).send('Error al guardar el mensaje');
-        } else {
-            res.status(200).send('Mensaje guardado correctamente');
+            console.error('Error al insertar contacto:', err);
+            return res.status(500).json({ error: err.message });
         }
+        res.status(200).send('Mensaje guardado correctamente');
+    });
+});
+
+// --- RUTAS DE OPINIONES ---
+app.get('/api/opiniones', (req, res) => {
+    const query = 'SELECT * FROM opiniones ORDER BY created_at DESC';
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+app.post('/api/opiniones', (req, res) => {
+    const { autor, rol, cita } = req.body;
+    const query = 'INSERT INTO opiniones (autor, rol, cita) VALUES (?, ?, ?)';
+    
+    db.query(query, [autor, rol, cita], (err, result) => {
+        if (err) {
+            console.error('Error al insertar opinión:', err);
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(200).send('Opinión guardada correctamente');
     });
 });
 

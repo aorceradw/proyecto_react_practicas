@@ -1,5 +1,5 @@
 import express from 'express';
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -9,38 +9,44 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuración de la conexión a MySQL
-const db = mysql.createConnection({
+// Optimization: Use a connection pool for better performance and reliability.
+// A pool allows multiple concurrent queries and manages connections automatically.
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-// Conectar a la base de datos
-db.connect((err) => {
-    if (err) {
-        console.error('Error conectando a MySQL:', err);
-        return;
-    }
-    console.log('Conectado a la base de datos MySQL (XAMPP)');
-});
+// Test pool connection on startup
+pool.getConnection()
+    .then(connection => {
+        console.log('Conectado a la base de datos MySQL con Pool (XAMPP)');
+        connection.release();
+    })
+    .catch(err => {
+        console.error('Error conectando al Pool de MySQL:', err);
+    });
 
-// Ruta para recibir los datos del formulario
-app.post('/api/contacto', (req, res) => {
+// Optimization: Move the SQL query string outside the request handler to avoid unnecessary re-allocation.
+const INSERT_CONTACTO_QUERY = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
+
+// Optimization: Use async/await and pool.execute() for prepared statements.
+// Prepared statements are faster for repeated queries and provide better security.
+app.post('/api/contacto', async (req, res) => {
     const { nombre, email, empresa, tipo_solicitud, mensaje } = req.body;
     
-    const query = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
-    
-    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, result) => {
-        if (err) {
-            console.error('Error al insertar datos:', err);
-            res.status(500).send('Error al guardar el mensaje');
-        } else {
-            res.status(200).send('Mensaje guardado correctamente');
-        }
-    });
+    try {
+        await pool.execute(INSERT_CONTACTO_QUERY, [nombre, email, empresa, tipo_solicitud, mensaje]);
+        res.status(200).send('Mensaje guardado correctamente');
+    } catch (err) {
+        console.error('Error al insertar datos:', err);
+        res.status(500).send('Error al guardar el mensaje');
+    }
 });
 
 const PORT = process.env.PORT || 3001;

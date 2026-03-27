@@ -7,7 +7,7 @@ export default function SobreMi() {
 
             <div className="sobre-cabecera">
                 <span className="etiqueta">進化 · Shinka</span>
-                <h1>Ángela</h1>
+                <h1>ángela</h1>
                 <span className="sobre-ubicacion">GRX, SPAIN</span>
             </div>
 
@@ -52,9 +52,7 @@ export default function SobreMi() {
 
             <div className="sobre-estado">
                 <span className="etiqueta">進化 ★ En evolución</span>
-                <span className="separador-vertical" aria-hidden="true" />
                 <span className="etiqueta">DAW 25/26</span>
-                <span className="separador-vertical" aria-hidden="true" />
                 <span className="etiqueta">Abierta a oportunidades</span>
             </div>
 

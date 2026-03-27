@@ -32,6 +32,8 @@ export default function Work() {
                 ))}
             </nav>
 
+          <p className="trabajos-hint">Pincha sobre los trabajos para experimentar con ellos </p>
+
             <div className="trabajos-galeria">
                 {activa === 'diseno'  && <GaleriaDiseño />}
                 {activa === 'web'     && <GaleriaWeb />}

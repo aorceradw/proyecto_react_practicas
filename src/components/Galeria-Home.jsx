@@ -10,13 +10,13 @@ const PROYECTOS = [
     },
     {
         id: 2,
-        titulo: 'Creating VW Identities',
+        titulo: 'CRE4TING AND C0DING IDENTITIES',
         categoria: 'Imagen corporativa con modelado 3d en Photoshop e Illustrator',
         img: new URL('../assets/images/vw4.webp', import.meta.url).href,
     },
     {
         id: 3,
-        titulo: 'Brand Ecosystem',
+        titulo: 'CREATE Y0UR P0WER',
         categoria: 'Branding',
         img: new URL('../assets/images/MARCAS.webp', import.meta.url).href,
         

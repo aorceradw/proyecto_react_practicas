@@ -13,8 +13,8 @@ export default function Header() {
     return (
         <header className="header">
             <Link to="/" className="logo" onClick={closeMenu}>
-                <img src={logo} alt="Angela" />
-                <span>ANGELA</span>
+                <img src={logo} alt="angela" />
+                <span>angela</span>
             </Link>
 
             <div className="header-derecha">

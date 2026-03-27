@@ -36,7 +36,7 @@ export default function GaleriaDiseño() {
             <section className="galeria-seccion">
                 <h2>Misma identidad, distintos formatos</h2>
                 <p>Exploración de un mismo concepto visual aplicado a diferentes soportes.</p>
-                <div className="galeria-grid">
+                <div className="galeria-grid galeria-vw">
                     {SERIES_VW.map(p => (
                         <figure key={p.id}>
                             <img 

@@ -62,21 +62,25 @@ export default function Home() {
             {/* Galería */}
             <GaleriaHome />
 
-           {/* Stack */}
+            {/* Stack */}
             <section className="stack">
                 <div className="stack-cabecera">
                     <span className="etiqueta">Lo que uso</span>
                     <h2>Stack</h2>
                 </div>
-                <div className="stack-grid">
+                <div className="stack-grid ticket-grid">
                     {STACK.map(grupo => (
-                        <div key={grupo.id} className="stack-grupo">
-                            <h3>{grupo.categoria}</h3>
-                            <ul>
+                        <div key={grupo.id} className="stack-grupo ticket">
+                            <div className="ticket-header">
+                                <h3>{grupo.categoria}</h3>
+                                <span className="ticket-meta">REF: 00{grupo.id} // SYS</span>
+                            </div>
+                            <ul className="ticket-items">
                                 {grupo.items.map(item => (
                                     <li key={item}>{item}</li>
                                 ))}
                             </ul>
+                            <div className="ticket-barcode"></div>
                         </div>
                     ))}
                 </div>
@@ -89,7 +93,7 @@ export default function Home() {
             <section className="cta">
                 <span className="etiqueta">¿Siguiente paso?</span>
                 <h2>¿Trabajamos junt@s?</h2>
-                <p>Si tienes un proyecto con personalidad, me interesa conocerlo.</p>
+                <p>Tu proyecto merece una identidad que lo diferencie.</p>
                 <Link to="/contacto">Contactar</Link>
             </section>
 

@@ -31,9 +31,9 @@ export default function Contacto() {
                         <div className="dato">
                             <span className="etiqueta">Redes</span>
                             <ul className="contacto-redes">
-                                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-                                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
-                                <li><a href="https://behance.net"   target="_blank" rel="noopener noreferrer">Behance ↗</a></li>
+                                <li><a href="linkedin.com/in/angelaorceraruiz" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+                                <li><a href="https://www.instagram.com/h3ncoo?igsh=MXQ1Z25oNXQyaDl4bA==" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+                                <li><a href="https://github.com/aorceradw"   target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
                             </ul>
                         </div>
 

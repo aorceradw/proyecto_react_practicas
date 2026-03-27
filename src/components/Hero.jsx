@@ -12,8 +12,7 @@ export default function Hero() {
             </div>
 
             <p className="hero-desc">
-                Evolucionar no es cambiar de dirección,<br />
-                es dejar de mirar atrás.
+                Evolucionar no es cambiar de dirección, es dejar de mirar atrás.
             </p>
 
             <Link to="/trabajos" className="hero-cta">

@@ -1,0 +1,102 @@
+import { Link } from 'react-router-dom';
+import Hero from '../components/Hero';
+import GaleriaHome from '../components/Galeria-Home';
+import Opiniones from '../components/Opiniones';
+
+const STACK = [
+    { id: 1, categoria: 'Frontend',    items: ['React', 'Vite', 'HTML', 'CSS', 'JavaScript'] },
+    { id: 2, categoria: 'Backend',     items: ['Node.js', 'Express', 'MySQL'] },
+    { id: 3, categoria: 'Diseño',      items: ['Figma', 'Illustrator', 'Photoshop'] },
+    { id: 4, categoria: 'Herramientas',items: ['Git', 'GitHub', 'AWS Lab'] },
+];
+
+export default function Home() {
+    return (
+        <main>
+
+            {/* Hero */}
+            <Hero />
+
+            {/* Marquee */}
+            <div className="marquee">
+                <div className="marquee-pista">
+                    <span>Desarrollo web · Imagen corporativa · Diseño gráfico · Granada · Branding · </span>
+                    <span>Desarrollo web · Imagen corporativa · Diseño gráfico · Granada · Branding · </span>
+                    <span>Desarrollo web · Imagen corporativa · Diseño gráfico · Granada · Branding · </span>
+                </div>
+            </div>
+
+            {/* Servicios */}
+            <section className="servicios">
+                <div className="servicios-cabecera">
+                    <span className="etiqueta">Qué hago</span>
+                    <h2>Servicios</h2>
+                </div>
+                <div className="servicios-grid">
+                    <div className="servicio servicio-especial">
+                        <span>01</span>
+                        <div>
+                            <h3>Desarrollo web</h3>
+                            <p>Webs con criterio de marca. Frontend en React, backend en Node. Código que respeta la identidad de la empresa.</p>
+                        </div>
+                    </div>
+                    <div className="servicio servicio-corporativa">
+                        <span>02</span>
+                        <div>
+                            <h3>Imagen corporativa</h3>
+                            <p>Análisis y construcción de la imagen que proyecta tu marca.</p>
+                        </div>
+                    </div>
+                    <div className="servicio servicio-diseño">
+                        <span>03</span>
+                        <div>
+                            <h3>Diseño gráfico</h3>
+                            <p>Identidades visuales, sistemas de marca y diseño editorial con intención y coherencia.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+         
+
+            {/* Galería */}
+            <GaleriaHome />
+
+            {/* Stack */}
+            <section className="stack">
+                <div className="stack-cabecera">
+                    <span className="etiqueta">Lo que uso</span>
+                    <h2>Stack</h2>
+                </div>
+                <div className="stack-grid ticket-grid">
+                    {STACK.map(grupo => (
+                        <div key={grupo.id} className="stack-grupo ticket">
+                            <div className="ticket-header">
+                                <h3>{grupo.categoria}</h3>
+                                <span className="ticket-meta">REF: 00{grupo.id} // SYS</span>
+                            </div>
+                            <ul className="ticket-items">
+                                {grupo.items.map(item => (
+                                    <li key={item}>{item}</li>
+                                ))}
+                            </ul>
+                            <div className="ticket-barcode"></div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Opiniones */}
+            <Opiniones />
+
+            {/* CTA */}
+            <section className="cta">
+                <span className="etiqueta">¿Siguiente paso?</span>
+                <h2>¿Trabajamos junt@s?</h2>
+                <p>Tu proyecto merece una identidad que lo diferencie.</p>
+                <Link to="/contacto">Contactar</Link>
+            </section>
+
+        </main>
+    );
+}

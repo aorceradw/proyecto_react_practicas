@@ -1,0 +1,3 @@
+## 2025-05-14 - Lazy State Initialization for Persistent UI State
+**Learning:** Initializing state like "theme" via `useEffect` after the component mounts causes an unnecessary second render cycle and often results in a Flash of Unstyled Content (FOUC). In React, retrieving this data directly in the `useState` initializer function (lazy initialization) ensures the correct theme is applied during the very first render.
+**Action:** Always use lazy state initialization (`useState(() => ... )`) when reading from synchronous I/O sources like `localStorage` or `sessionStorage` to avoid redundant mount-time updates.

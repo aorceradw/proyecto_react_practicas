@@ -1,0 +1,3 @@
+## 2025-05-14 - Route-based Code Splitting with AnimatePresence
+**Learning:** When using `React.lazy` and `Suspense` inside a framer-motion `AnimatePresence` block, it is critical to ensure that the `location` object from `useLocation()` is passed to the `Routes` component. Without this, `AnimatePresence` may lose track of the previous route's state during the chunk loading phase, causing exit animations to fail or be skipped.
+**Action:** Always verify that `Routes` has the `location={location}` prop and a unique `key` (usually `location.pathname`) when wrapping it with `AnimatePresence` and `Suspense`.

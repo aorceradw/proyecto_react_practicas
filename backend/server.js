@@ -31,7 +31,7 @@ app.post('/api/contactos', (req, res) => {
     
     const query = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
     
-    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, result) => {
+    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err) => {
         if (err) {
             console.error('Error al insertar contacto:', err);
             return res.status(500).json({ error: 'Error al guardar en la base de datos' });
@@ -54,7 +54,7 @@ app.post('/api/opiniones', (req, res) => {
     const { autor, rol, cita } = req.body;
     const query = 'INSERT INTO opiniones (autor, rol, cita) VALUES (?, ?, ?)';
     
-    db.query(query, [autor, rol, cita], (err, result) => {
+    db.query(query, [autor, rol, cita], (err) => {
         if (err) {
             console.error('Error al insertar opinión:', err);
             return res.status(500).json({ error: err.message });

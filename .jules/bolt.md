@@ -1,0 +1,3 @@
+## 2024-04-07 - Route-based Code Splitting & Lazy State Initialization
+**Learning:** For monolithic React applications with a large entry bundle (e.g., ~400kB), implementing route-based code splitting using `React.lazy` and `Suspense` can yield immediate performance gains (in this case, a ~9.4% reduction in the main bundle size) without affecting the UI. Additionally, using lazy state initialization for `useState` when syncing with `localStorage` prevents a redundant initial render and ensures theme persistence is applied before the first paint, avoiding flickering.
+**Action:** Always check the `index.js` bundle size before and after changes. Prioritize lazy loading for routes and `localStorage` syncing to minimize main thread blocking and unnecessary re-renders.

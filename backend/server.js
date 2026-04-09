@@ -36,7 +36,7 @@ app.post('/api/contactos', (req, res) => {
             console.error('Error al insertar contacto:', err);
             return res.status(500).json({ error: 'Error al guardar en la base de datos' });
         }
-        res.status(200).send('Mensaje recibido y guardado');
+        res.status(200).json({ message: 'Mensaje recibido y guardado', id: result.insertId });
     });
 });
 
@@ -59,7 +59,7 @@ app.post('/api/opiniones', (req, res) => {
             console.error('Error al insertar opinión:', err);
             return res.status(500).json({ error: err.message });
         }
-        res.status(200).send('Opinión guardada correctamente');
+        res.status(200).json({ message: 'Opinión guardada correctamente', id: result.insertId });
     });
 });
 

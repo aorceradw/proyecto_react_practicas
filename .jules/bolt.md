@@ -1,0 +1,3 @@
+## 2025-05-15 - Route-based Code Splitting Implementation
+**Learning:** Implementing `React.lazy` and `Suspense` for route components effectively reduced the initial bundle size by ~7.2% (from 388.56kB to 360.34kB). Using `fallback={null}` in this specific architecture prevents unwanted layout shifts during transitions while maintaining `framer-motion` exit animations when the `location` prop is passed to `Routes`.
+**Action:** Prioritize route-based splitting for all future performance tasks where initial bundle size exceeds 300kB. Ensure `AnimatePresence` is correctly configured with `useLocation` to avoid breaking transitions.

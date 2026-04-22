@@ -1,16 +1,45 @@
-# React + Vite
+# Portfolio Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto fullstack con React 19 + Express.js + MySQL.
 
-Currently, two official plugins are available:
+## Estructura
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend (React SPA):
 
-## React Compiler
+- src/ - codigo fuente
+- public/ - archivos publicos
+- Dockerfile - build multi-stage
+- package.json
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Backend (Express API):
 
-## Expanding the ESLint configuration
+- app/ - servidor y logica
+- tests/ - tests
+- Dockerfile - node alpine
+- database.sql - schema
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Docker
+
+El proyecto usa 3 servicios:
+
+- database: MySQL 8.0 puerto 3306
+- backend: Express puerto 5000
+- frontend: React + Nginx puertos 80 y 3000
+
+## Uso
+
+```bash
+chmod +x start-docker.sh
+./start-docker.sh
+
+docker-compose logs -f
+
+docker-compose down
+```
+
+## URLs
+
+- Frontend: http://localhost
+- Backend: http://localhost:5000
+- API: http://localhost:5000/api
+- Database: localhost:3306

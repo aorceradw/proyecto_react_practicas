@@ -1,0 +1,3 @@
+## 2025-05-15 - Route-based code splitting with Framer Motion
+**Learning:** When using `framer-motion`'s `AnimatePresence` with `React.lazy`, the `location` prop from `useLocation()` must be passed to the `Routes` component. Without it, `AnimatePresence` may fail to track the exiting component correctly during route transitions, causing exit animations to be skipped or behave unexpectedly when components are dynamically loaded.
+**Action:** Always ensure `location` and a unique `key` (usually `location.pathname`) are provided to `Routes` when wrapped in `AnimatePresence`, especially when implementing code splitting.

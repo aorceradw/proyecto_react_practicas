@@ -1,0 +1,4 @@
+## 2024-05-15 - [Theme State Optimization & Route Splitting]
+**Learning:** Using `useState(() => localStorage.getItem('theme'))` (lazy initialization) is essential when dealing with synchronous I/O or expensive calculations in the initial state. Previously, the app was reading from `localStorage` on every render, which is inefficient. Furthermore, combining `React.lazy` with `framer-motion` animations requires passing the `location` object from `useLocation()` to the `<Routes>` component to ensure exit animations trigger correctly when components are unmounted before the new ones are fully loaded.
+
+**Action:** Always use lazy initializers for `useState` when the initial value depends on `localStorage` or `window` properties. When implementing route-based code splitting in an app using `framer-motion`, ensure the `AnimatePresence` and `Routes` context are correctly synchronized with the router's location.

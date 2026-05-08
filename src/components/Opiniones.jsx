@@ -8,19 +8,33 @@ export default function Opiniones() {
     const [estado, setEstado] = useState('idle');
     const [cargando, setCargando] = useState(true);
 
-    const cargarOpiniones = async () => {
+    const cargarOpiniones = async (signal) => {
         try {
-            const res = await fetch(`${API}/api/opiniones`);
-            if (res.ok) setOpiniones(await res.json());
+            const res = await fetch(`${API}/api/opiniones`, { signal });
+            if (res.ok) {
+                const data = await res.json();
+                setOpiniones(data);
+            }
         } catch (error) {
-            console.error('Error al cargar opiniones:', error);
+            if (error.name !== 'AbortError') {
+                console.error('Error al cargar opiniones:', error);
+            }
         } finally {
             setCargando(false);
         }
     };
 
     useEffect(() => {
-        cargarOpiniones();
+        const controller = new AbortController();
+
+        // Use a microtask to avoid synchronous setState warning during initial render
+        Promise.resolve().then(() => {
+            if (!controller.signal.aborted) {
+                cargarOpiniones(controller.signal);
+            }
+        });
+
+        return () => controller.abort();
     }, []);
 
     function handleChange(e) {

@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export default function ToggleTema() {
-    const [oscuro, setOscuro] = useState(true);
-
-    useEffect(() => {
+    // Optimización Bolt: Inicialización perezosa para evitar doble render al montar
+    const [oscuro, setOscuro] = useState(() => {
         const guardado = localStorage.getItem('tema');
-        if (guardado) {
-            setOscuro(guardado === 'oscuro');
-        }
-    }, []);
+        return guardado ? guardado === 'oscuro' : true;
+    });
 
     useEffect(() => {
         document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');

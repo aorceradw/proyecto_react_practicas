@@ -1,0 +1,3 @@
+## 2026-05-16 - Route-based Code Splitting and Lazy State Initialization
+**Learning:** Implementing route-based code splitting using `React.lazy` and `Suspense` significantly reduced the initial bundle size by ~7.2% (from 389.07 kB to 360.84 kB). Additionally, using a lazy initializer function for `useState` (e.g., `useState(() => localStorage.getItem(...))`) prevents redundant re-renders and unnecessary I/O operations on every render cycle.
+**Action:** Always prefer lazy state initialization for expensive operations like `localStorage` lookups and implement code splitting for all top-level route components to optimize Largest Contentful Paint (LCP) and Time to Interactive (TTI).

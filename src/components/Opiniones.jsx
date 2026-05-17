@@ -8,24 +8,43 @@ export default function Opiniones() {
     const [estado, setEstado] = useState('idle');
     const [cargando, setCargando] = useState(true);
 
-    const cargarOpiniones = async () => {
-        try {
-            const res = await fetch(`${API}/api/opiniones`);
-            if (res.ok) setOpiniones(await res.json());
-        } catch (error) {
-            console.error('Error al cargar opiniones:', error);
-        } finally {
-            setCargando(false);
-        }
-    };
-
     useEffect(() => {
+        const controller = new AbortController();
+
+        const cargarOpiniones = async () => {
+            try {
+                const res = await fetch(`${API}/api/opiniones`, {
+                    signal: controller.signal
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setOpiniones(data);
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Error al cargar opiniones:', error);
+                }
+            } finally {
+                setCargando(false);
+            }
+        };
+
         cargarOpiniones();
+        return () => controller.abort();
     }, []);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
+
+    const refrescarOpiniones = async () => {
+        try {
+            const res = await fetch(`${API}/api/opiniones`);
+            if (res.ok) setOpiniones(await res.json());
+        } catch (error) {
+            console.error('Error al refrescar opiniones:', error);
+        }
+    };
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -39,7 +58,7 @@ export default function Opiniones() {
             if (res.ok) {
                 setEstado('ok');
                 setForm({ autor: '', rol: '', cita: '' });
-                cargarOpiniones();
+                refrescarOpiniones();
                 setTimeout(() => setEstado('idle'), 5000);
             } else {
                 setEstado('error');

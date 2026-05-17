@@ -1,0 +1,3 @@
+## 2025-05-22 - Route-based Code Splitting and Lazy State Initialization
+**Learning:** Using `React.lazy` with `framer-motion`'s `AnimatePresence` requires passing the `location` prop to the `Routes` component to maintain exit animations. Additionally, refactoring `useEffect` hooks that call `setState` into lazy state initializers (where possible) resolves `react-hooks/set-state-in-effect` linting errors and improves initial mount performance.
+**Action:** Always prefer lazy state initializers for reading from `localStorage` or other synchronous sources during component initialization. For async data fetching, use `AbortController` inside `useEffect` to prevent state updates on unmounted components and satisfy modern React linting rules.

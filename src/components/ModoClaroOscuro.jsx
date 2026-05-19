@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export default function ToggleTema() {
-    const [oscuro, setOscuro] = useState(true);
-
-    useEffect(() => {
+    // ⚡ Bolt Optimization: Lazy state initialization
+    // Initializing state from localStorage directly in useState prevents a second render on mount
+    // and avoids the "set-state-in-effect" lint error.
+    const [oscuro, setOscuro] = useState(() => {
         const guardado = localStorage.getItem('tema');
-        if (guardado) {
-            setOscuro(guardado === 'oscuro');
-        }
-    }, []);
+        return guardado ? guardado === 'oscuro' : true;
+    });
 
     useEffect(() => {
         document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');

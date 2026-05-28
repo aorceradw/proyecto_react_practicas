@@ -1,0 +1,3 @@
+## 2025-05-14 - Unused Heavy Dependencies & Route-Based Code Splitting
+**Learning:** Found that `three` and `gsap` contribute significantly to the total bundle size but are not imported anywhere in `src/`. Additionally, implementing route-based code splitting with `React.lazy` and `Suspense` reduced the initial bundle by ~7.2% (28kB).
+**Action:** When profiling, always check if the heaviest dependencies in `package.json` are actually used in the source code. For React apps with multiple pages, use `React.lazy` for routes to minimize the entry point size. Ensure `Suspense` is placed correctly within `framer-motion` containers to preserve exit animations.

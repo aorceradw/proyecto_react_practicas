@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 const SubirArriba = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +28,7 @@ const SubirArriba = () => {
     return (
         <AnimatePresence>
             {isVisible && (
-                <motion.button
+                <Motion.button
                     className="subir-arriba cyber-panel"
                     onClick={scrollToTop}
                     initial={{ opacity: 0, y: 20, scale: 0.8 }}
@@ -39,7 +39,7 @@ const SubirArriba = () => {
                 >
                     <span className="subir-arriba-icono">↑</span>
                     <div className="scanline"></div>
-                </motion.button>
+                </Motion.button>
             )}
         </AnimatePresence>
     );

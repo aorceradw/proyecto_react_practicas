@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useTransform, useSpring, useMotionTemplate } from 'framer-motion';
+import { motion as Motion, useMotionValue, useTransform, useSpring, useMotionTemplate } from 'framer-motion';
 
 export default function ClickImagen({ imagen, onClose }) {
     const cardRef = useRef(null);
@@ -111,7 +111,7 @@ export default function ClickImagen({ imagen, onClose }) {
                 <button className="click-imagen-close" onClick={onClose} style={{ position: 'static', margin: 0, padding: 0 }}>&times;</button>
             </div>
             <div className="click-imagen-wrapper" style={{ perspective: 1000 }}>
-                <motion.div
+                <Motion.div
                     className="click-imagen-content"
                     ref={cardRef}
                     onClick={(e) => e.stopPropagation()}
@@ -149,7 +149,7 @@ export default function ClickImagen({ imagen, onClose }) {
                 >
                     <img src={imagen.img} alt={imagen.titulo} className="click-imagen-img" />
                     <div className="click-imagen-glare"></div>
-                </motion.div>
+                </Motion.div>
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
                     <p className="click-imagen-caption">{imagen.titulo}</p>
                     <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', opacity: 0.9 }}>

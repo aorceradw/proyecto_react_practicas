@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as _Motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/images/A de angela2.png';
 import ToggleTema from './ModoClaroOscuro';
 

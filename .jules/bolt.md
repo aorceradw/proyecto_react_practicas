@@ -1,0 +1,3 @@
+## 2025-01-24 - Route-based Code Splitting and Theme State Optimization
+**Learning:** In a Vite/React SPA, eager loading all route components significantly bloats the initial bundle. Route-based splitting with `React.lazy` and `Suspense` provided a ~7% reduction (28kB) in this project with minimal effort. Additionally, initializing theme state from `localStorage` within `useEffect` causes a redundant second render on mount; using a lazy initializer in `useState` instead eliminates this overhead and prevents potential theme flickering.
+**Action:** Always prefer lazy initializers for `useState` when reading from `localStorage` or other synchronous side-effects. Use `React.lazy` for route-level components to optimize the critical rendering path.

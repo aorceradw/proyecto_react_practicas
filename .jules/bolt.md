@@ -1,0 +1,3 @@
+## 2025-05-22 - [Route-based Code Splitting & Lazy State Initialization]
+**Learning:** In a project using 'framer-motion' with 'AnimatePresence', the 'Suspense' boundary should be placed inside the 'motion.div' that handles route transitions. If placed outside, the loading state might interrupt the transition lifecycle, leading to broken animations. Additionally, initializing state from localStorage lazily in 'useState' prevents double-renders and theme flashes compared to 'useEffect'.
+**Action:** Always prefer lazy useState initializers for I/O bound values (localStorage) and nest 'Suspense' within animated route wrappers to maintain transition integrity.

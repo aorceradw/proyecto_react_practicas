@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export default function ToggleTema() {
-    const [oscuro, setOscuro] = useState(true);
-
-    useEffect(() => {
+    // Lazy initialization of state to prevent double-render and sync with localStorage immediately
+    const [oscuro, setOscuro] = useState(() => {
         const guardado = localStorage.getItem('tema');
-        if (guardado) {
-            setOscuro(guardado === 'oscuro');
-        }
-    }, []);
+        // Default to dark mode (true) if nothing is saved
+        return guardado ? guardado === 'oscuro' : true;
+    });
 
     useEffect(() => {
         document.documentElement.setAttribute('data-tema', oscuro ? 'oscuro' : 'claro');

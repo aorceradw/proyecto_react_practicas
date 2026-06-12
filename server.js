@@ -30,7 +30,7 @@ app.post('/api/contactos', (req, res) => {
     const { nombre, email, empresa, tipo_solicitud, mensaje } = req.body;
     const query = 'INSERT INTO contactos (nombre, email, empresa, tipo_solicitud, mensaje) VALUES (?, ?, ?, ?, ?)';
     
-    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, result) => {
+    db.query(query, [nombre, email, empresa, tipo_solicitud, mensaje], (err, _result) => {
         if (err) {
             console.error('Error al insertar contacto:', err);
             return res.status(500).json({ error: err.message });
@@ -40,7 +40,7 @@ app.post('/api/contactos', (req, res) => {
 });
 
 // --- RUTAS DE OPINIONES ---
-app.get('/api/opiniones', (req, res) => {
+app.get('/api/opiniones', (_req, res) => {
     const query = 'SELECT * FROM opiniones ORDER BY created_at DESC';
     db.query(query, (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
@@ -52,7 +52,7 @@ app.post('/api/opiniones', (req, res) => {
     const { autor, rol, cita } = req.body;
     const query = 'INSERT INTO opiniones (autor, rol, cita) VALUES (?, ?, ?)';
     
-    db.query(query, [autor, rol, cita], (err, result) => {
+    db.query(query, [autor, rol, cita], (err, _result) => {
         if (err) {
             console.error('Error al insertar opinión:', err);
             return res.status(500).json({ error: err.message });

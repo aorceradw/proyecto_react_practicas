@@ -1,0 +1,3 @@
+## 2026-06-14 - [Route-based Code Splitting and Theme Optimization]
+**Learning:** Implementing `React.lazy` for routes significantly reduces the initial bundle size (by ~28kB in this case), but it can expose pre-existing performance anti-patterns like synchronous `localStorage` access in `useEffect` for theme state. Initializing state lazily prevents an extra render cycle and avoids "flashing" or layout shifts when chunks are loading.
+**Action:** Always check for `localStorage` or other I/O operations in `useEffect` when adding code splitting, and refactor to lazy `useState` initializers to ensure the smoothest possible transition between chunks.

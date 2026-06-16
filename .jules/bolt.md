@@ -1,0 +1,3 @@
+## 2025-05-22 - Route Splitting and Lazy State Optimization
+**Learning:** In projects with heavy dependencies (like `three` and `gsap`) that cannot be easily removed, route-based code splitting with `React.lazy` is the most effective way to reduce the initial bundle size. Additionally, initializing state from `localStorage` synchronously in `useEffect` is a common performance anti-pattern that causes double renders and potential layout shifts; lazy state initialization in `useState` is the correct solution.
+**Action:** Always check for `localStorage` access in `useEffect` on mount and refactor to lazy `useState` initializers. Prioritize `React.lazy` for any application with distinct page routes to keep the main entry point lean.

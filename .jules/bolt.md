@@ -1,0 +1,3 @@
+## 2025-05-15 - Route-based code splitting and Theme Toggle optimization
+**Learning:** In a Vite-based React application, implementing `React.lazy` for route components significantly reduces the initial bundle size (7.2% reduction in this case). Additionally, using a lazy state initializer for `useState` to read from `localStorage` is essential to prevent redundant I/O and renders during the initial mount, especially when combined with a `useEffect` that synchronizes state back to the DOM.
+**Action:** Always prefer lazy initialization for state derived from external APIs or storage. Implement route-level code splitting for all medium-to-large applications to optimize LCP and initial load time.

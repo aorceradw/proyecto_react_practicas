@@ -45,7 +45,7 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid grid-unico">
                     {LOGOTIPOS.map(p => (
                         <figure key={p.id} className={p.img.includes('LOGO') || p.img.includes('star') || p.img.includes('logopuf') ? 'no-border' : ''}>
-                            <img
+                            <img loading="lazy"
                                 src={p.img}
                                 alt={p.titulo}
                                 onClick={() => setFotoSeleccionada(p)}
@@ -63,7 +63,7 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {BRANDING.map(p => (
                         <figure key={p.id} className={p.img.includes('logopuf') ? 'no-border' : ''}>
-                            <img
+                            <img loading="lazy"
                                 src={p.img}
                                 alt={p.titulo}
                                 onClick={() => setFotoSeleccionada(p)}
@@ -81,7 +81,7 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {EDITORIAL.map(p => (
                         <figure key={p.id} className="fig-alargada">
-                            <img
+                            <img loading="lazy"
                                 src={p.img}
                                 alt={p.titulo}
                                 onClick={() => setFotoSeleccionada(p)}
@@ -97,7 +97,7 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid grid-unico">
                     {REDES.map(p => (
                         <figure key={p.id} className={p.img.includes('star') || p.img.includes('LOGO') || p.img.includes('logopuf') ? 'no-border' : ''}>
-                            <img
+                            <img loading="lazy"
                                 src={p.img}
                                 alt={p.titulo}
                                 onClick={() => setFotoSeleccionada(p)}
@@ -115,7 +115,7 @@ export default function GaleriaImagen() {
                 <div className="galeria-grid">
                     {CARTELES.map(p => (
                         <figure key={p.id} className={p.img.includes('star') || p.img.includes('LOGO') ? 'no-border' : ''}>
-                            <img
+                            <img loading="lazy"
                                 src={p.img}
                                 alt={p.titulo}
                                 onClick={() => setFotoSeleccionada(p)}

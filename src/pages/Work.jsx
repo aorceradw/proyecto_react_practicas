@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import GaleriaDiseño from '../components/Galeriadiseño';
-import GaleriaWeb    from '../components/Galeriaweb';
-import GaleriaImagen from '../components/Galeriaimagen';
+import { useState, lazy, Suspense } from 'react';
+
+// Lazy loading of heavy gallery components
+const GaleriaDiseño = lazy(() => import('../components/Galeriadiseño'));
+const GaleriaWeb    = lazy(() => import('../components/Galeriaweb'));
+const GaleriaImagen = lazy(() => import('../components/Galeriaimagen'));
 
 const CATEGORIAS = [
     { id: 'diseno',  etiqueta: 'Diseño gráfico' },
@@ -35,9 +37,11 @@ export default function Work() {
           <p className="trabajos-hint">Pincha sobre los trabajos para experimentar con ellos </p>
 
             <div className="trabajos-galeria">
-                {activa === 'diseno'  && <GaleriaDiseño />}
-                {activa === 'web'     && <GaleriaWeb />}
-                {activa === 'imagen'  && <GaleriaImagen />}
+                <Suspense fallback={<div style={{ minHeight: '300px' }} />}>
+                    {activa === 'diseno'  && <GaleriaDiseño />}
+                    {activa === 'web'     && <GaleriaWeb />}
+                    {activa === 'imagen'  && <GaleriaImagen />}
+                </Suspense>
             </div>
 
         </main>

@@ -39,7 +39,7 @@ export default function GaleriaDiseño() {
                 <div className="galeria-grid galeria-vw">
                     {SERIES_VW.map(p => (
                         <figure key={p.id}>
-                            <img 
+                            <img loading="lazy"
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}
@@ -56,7 +56,7 @@ export default function GaleriaDiseño() {
                 <div className="galeria-grid">
                     {ELEMENTOS_3D.map(p => (
                         <figure key={p.id} className={p.img.includes('LOGO') || p.img.includes('star') || p.img.includes('logopuf') ? 'no-border' : ''}>
-                            <img 
+                            <img loading="lazy"
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}
@@ -74,7 +74,7 @@ export default function GaleriaDiseño() {
                 <div className="galeria-grid">
                     {CARTELERIA.map(p => (
                         <figure key={p.id}>
-                            <img 
+                            <img loading="lazy"
                                 src={p.img} 
                                 alt={p.titulo} 
                                 onClick={() => setFotoSeleccionada(p)}

@@ -25,7 +25,7 @@ export default function GaleriaWeb() {
                 <article key={proyecto.id} className="proyecto-web">
 
                     <div className="proyecto-web-imagen">
-                        <img src={proyecto.img} alt={proyecto.alt} />
+                        <img src={proyecto.img} alt={proyecto.alt} loading="lazy" />
                         <div className="proyecto-web-overlay">
                             <span>En desarrollo</span>
                         </div>

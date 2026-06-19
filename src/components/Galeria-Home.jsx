@@ -47,6 +47,7 @@ export default function GaleriaHome() {
                             src={proyecto.img}
                             alt={proyecto.titulo}
                             className="galeria-home-foto"
+                            loading="lazy"
                         />
                         <div className="galeria-home-info">
                             <span className="galeria-home-categoria">{proyecto.categoria}</span>

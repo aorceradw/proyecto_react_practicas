@@ -1,0 +1,3 @@
+## 2025-01-24 - Route Splitting with Framer Motion and Lazy State
+**Learning:** Combining `React.lazy` with `framer-motion`'s `AnimatePresence` requires passing the `location` object to the `Routes` component to ensure exit animations aren't lost during chunk loading. Additionally, refactoring `useEffect` state synchronization to lazy `useState` initializers avoids double-renders on mount and satisfies `react-hooks/set-state-in-effect` linting rules.
+**Action:** Always place `Suspense` boundaries inside animated route wrappers and prefer `useState(() => localStorage.getItem(...))` for persisted state to ensure O(1) mount performance.

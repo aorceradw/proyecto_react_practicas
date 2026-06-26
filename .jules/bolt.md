@@ -1,0 +1,3 @@
+## 2025-05-15 - Route-based Code Splitting Impact
+**Learning:** Static imports of all main page components in `App.jsx` caused the initial production bundle to include the entire application's logic, leading to a baseline size of 388.56 kB. Implementing `React.lazy` and `Suspense` successfully split these into async chunks, reducing the initial bundle to 360.46 kB (~7.2% reduction). This ensures that users only download the code necessary for the initial route they land on.
+**Action:** Use `React.lazy` and `Suspense` for all top-level route components to optimize initial load time and reduce the main entry point payload.

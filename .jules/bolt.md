@@ -1,0 +1,3 @@
+## 2025-05-15 - [AnimatePresence with React.lazy]
+**Learning:** Combining `framer-motion`'s `AnimatePresence` with `React.lazy` requires careful placement of the `motion` components. If the `motion.div` is outside the lazy component (e.g., in `App.jsx` wrapping the `Suspense` boundary), exit animations may fail or "pop" because the component being removed is replaced by a Suspense fallback before the animation completes.
+**Action:** Move the `motion.div` and its transition logic *inside* the lazy-loaded component. This ensures the component owns its lifecycle and animation state, allowing `AnimatePresence` to correctly handle the exit transition even as chunks are being loaded or unmounted.

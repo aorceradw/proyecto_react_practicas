@@ -1,39 +1,38 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
 
 import Header   from './components/Header';
 import Footer   from './components/Footer';
 import SubirArriba from './components/SubirArriba';
 
-import Home     from './pages/Home';
-import Work     from './pages/Work';
-import SobreMi  from './pages/Sobre-Mi';
-import Contacto from './pages/Contacto';
-
-const variantes = {
-    inicial: { opacity: 0, y: 18 },
-    entrar:  { opacity: 1, y: 0,   transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
-    salir:   { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
-};
+// Optimized: Lazy loading page components to reduce initial bundle size
+const Home     = lazy(() => import('./pages/Home'));
+const Work     = lazy(() => import('./pages/Work'));
+const SobreMi  = lazy(() => import('./pages/Sobre-Mi'));
+const Contacto = lazy(() => import('./pages/Contacto'));
 
 function AnimatedRoutes() {
     const location = useLocation();
     return (
         <AnimatePresence mode="wait">
-            <motion.div
-                key={location.pathname}
-                variants={variantes}
-                initial="inicial"
-                animate="entrar"
-                exit="salir"
-            >
-                <Routes location={location}>
-                    <Route path="/"         element={<Home />} />
+            {/*
+                Performance Optimization: Suspense boundary for lazy-loaded routes.
+                Placed inside AnimatePresence to ensure exit animations are not interrupted.
+                Using a centered fallback with min-height to prevent layout shifts.
+            */}
+            <Suspense fallback={
+                <div className="flex items-center justify-center" style={{ minHeight: '200px' }}>
+                    <p>Cargando...</p>
+                </div>
+            }>
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<Home />} />
                     <Route path="/trabajos" element={<Work />} />
                     <Route path="/sobre-mi" element={<SobreMi />} />
                     <Route path="/contacto" element={<Contacto />} />
                 </Routes>
-            </motion.div>
+            </Suspense>
         </AnimatePresence>
     );
 }

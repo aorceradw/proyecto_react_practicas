@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
+import { motion as Motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import GaleriaHome from '../components/Galeria-Home';
 import Opiniones from '../components/Opiniones';
+
+const variantes = {
+    inicial: { opacity: 0, y: 18 },
+    entrar:  { opacity: 1, y: 0,   transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+    salir:   { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
+};
 
 const STACK = [
     { id: 1, categoria: 'Frontend',    items: ['React', 'Vite', 'HTML', 'CSS', 'JavaScript'] },
@@ -12,7 +19,7 @@ const STACK = [
 
 export default function Home() {
     return (
-        <main>
+        <Motion.main variants={variantes} initial="inicial" animate="entrar" exit="salir">
 
             {/* Hero */}
             <Hero />
@@ -97,6 +104,6 @@ export default function Home() {
                 <Link to="/contacto">Contactar</Link>
             </section>
 
-        </main>
+        </Motion.main>
     );
 }

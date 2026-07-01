@@ -1,8 +1,15 @@
+import { motion as Motion } from 'framer-motion';
 import FormularioContacto from '../components/FormularioContacto';
+
+const variantes = {
+    inicial: { opacity: 0, y: 18 },
+    entrar:  { opacity: 1, y: 0,   transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+    salir:   { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
+};
 
 export default function Contacto() {
     return (
-        <main className="contacto">
+        <Motion.main className="contacto" variants={variantes} initial="inicial" animate="entrar" exit="salir">
 
             <div className="contacto-layout">
 
@@ -46,6 +53,6 @@ export default function Contacto() {
 
             </div>
 
-        </main>
+        </Motion.main>
     );
 }

@@ -1,9 +1,16 @@
+import { motion as Motion } from 'framer-motion';
 import angyImg from '../assets/images/a de angy.png';
 import Skills from '../components/Skills';
 
+const variantes = {
+    inicial: { opacity: 0, y: 18 },
+    entrar:  { opacity: 1, y: 0,   transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+    salir:   { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.4, 0, 1, 1] } },
+};
+
 export default function SobreMi() {
     return (
-        <main className="sobre-mi">
+        <Motion.main className="sobre-mi" variants={variantes} initial="inicial" animate="entrar" exit="salir">
 
             <div className="sobre-cabecera">
                 <span className="etiqueta">進化 · Shinka</span>
@@ -56,6 +63,6 @@ export default function SobreMi() {
                 <span className="etiqueta">Abierta a oportunidades</span>
             </div>
 
-        </main>
+        </Motion.main>
     );
 }

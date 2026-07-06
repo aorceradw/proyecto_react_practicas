@@ -1,14 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
 
 import Header   from './components/Header';
 import Footer   from './components/Footer';
 import SubirArriba from './components/SubirArriba';
 
-import Home     from './pages/Home';
-import Work     from './pages/Work';
-import SobreMi  from './pages/Sobre-Mi';
-import Contacto from './pages/Contacto';
+const Home     = lazy(() => import('./pages/Home'));
+const Work     = lazy(() => import('./pages/Work'));
+const SobreMi  = lazy(() => import('./pages/Sobre-Mi'));
+const Contacto = lazy(() => import('./pages/Contacto'));
 
 const variantes = {
     inicial: { opacity: 0, y: 18 },
@@ -20,20 +21,22 @@ function AnimatedRoutes() {
     const location = useLocation();
     return (
         <AnimatePresence mode="wait">
-            <motion.div
+            <Motion.div
                 key={location.pathname}
                 variants={variantes}
                 initial="inicial"
                 animate="entrar"
                 exit="salir"
             >
-                <Routes location={location}>
-                    <Route path="/"         element={<Home />} />
-                    <Route path="/trabajos" element={<Work />} />
-                    <Route path="/sobre-mi" element={<SobreMi />} />
-                    <Route path="/contacto" element={<Contacto />} />
-                </Routes>
-            </motion.div>
+                <Suspense fallback={<div className="flex items-center justify-center min-h-[200px]">Cargando...</div>}>
+                    <Routes location={location}>
+                        <Route path="/"         element={<Home />} />
+                        <Route path="/trabajos" element={<Work />} />
+                        <Route path="/sobre-mi" element={<SobreMi />} />
+                        <Route path="/contacto" element={<Contacto />} />
+                    </Routes>
+                </Suspense>
+            </Motion.div>
         </AnimatePresence>
     );
 }
